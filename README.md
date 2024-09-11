@@ -1,9 +1,12 @@
 # KlakNDI visionOS Demo
 
+Demo project of using KlakNDI with Apple Vision Pro
+
+![Untitled](https://github.com/user-attachments/assets/85bbeef8-e340-49ca-922a-e29e3f39d708)
 
 ### Build settings
 Switch to the visionOS platform    
-Target SDK: Device SDK    
+Target SDK - Device SDK    
 
 ### Packages
 com.unity.xr.visionos    
