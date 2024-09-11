@@ -1,0 +1,3772 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <dot name = "_1" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_2" />
+    </dot>
+    <RealityKitTexture2D name = "_2" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_3" />
+        <input name = "texcoord" type = "vector2" nodename = "_4" />
+        <input name = "min_filter" type = "string" value = "linear" />
+        <input name = "mag_filter" type = "string" value = "linear" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "repeat" />
+        <input name = "v_wrap_mode" type = "string" value = "repeat" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2D>
+    <dot name = "_3" type = "filename">
+        <input name = "in" type = "filename" nodename = "_BaseMap" />
+    </dot>
+    <add name = "_4" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_5" />
+        <input name = "in2" type = "vector2" nodename = "_8" />
+    </add>
+    <multiply name = "_5" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_6" />
+        <input name = "in2" type = "vector2" nodename = "_7" />
+    </multiply>
+    <dot name = "_6" type = "vector2">
+        <input name = "in" type = "vector2" value = "0,0" />
+    </dot>
+    <swizzle name = "_7" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "TextureTransform_BaseMap" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "TextureTransform_BaseMap" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_8" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "TextureTransform_BaseMap" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_9" type = "float">
+        <input name = "in" type = "float" nodename = "_10" />
+    </dot>
+    <swizzle name = "_10" type = "float">
+        <input name = "in" type = "vector4" nodename = "_2" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_11" type = "float">
+        <input name = "in" type = "float" nodename = "_12" />
+    </dot>
+    <swizzle name = "_12" type = "float">
+        <input name = "in" type = "vector4" nodename = "_2" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_13" type = "float">
+        <input name = "in" type = "float" nodename = "_14" />
+    </dot>
+    <swizzle name = "_14" type = "float">
+        <input name = "in" type = "vector4" nodename = "_2" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_15" type = "float">
+        <input name = "in" type = "float" nodename = "_16" />
+    </dot>
+    <swizzle name = "_16" type = "float">
+        <input name = "in" type = "vector4" nodename = "_2" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_BaseMap" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <multiply name = "_17" type = "vector4">
+        <input name = "in1" type = "vector4" nodename = "_1" />
+        <input name = "in2" type = "vector4" nodename = "_1001" />
+    </multiply>
+    <geomcolor name = "_18" type = "color4">
+    </geomcolor>
+    <swizzle name = "_19" type = "float">
+        <input name = "in" type = "vector4" nodename = "_17" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <constant name = "_TrailsIndexDataTexture" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "_TrailsVertexDataTexture" type = "filename">
+        <input name = "value" type = "filename" value = "placeholder.png" />
+    </constant>
+    <constant name = "TextureSize_TrailsIndexDataTexture" type = "vector3">
+        <input name = "value" type = "vector3" value = "0,0,0" />
+    </constant>
+    <constant name = "TextureSize_TrailsVertexDataTexture" type = "vector3">
+        <input name = "value" type = "vector3" value = "0,0,0" />
+    </constant>
+    <constant name = "_20" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "TextureSize_TrailsIndexDataTexture" />
+    </constant>
+    <multiply name = "_21" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_38" />
+        <input name = "in2" type = "vector2" nodename = "_75" />
+    </multiply>
+    <constant name = "_22" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_86" />
+    </constant>
+    <constant name = "_23" type = "filename">
+        <input name = "value" type = "filename" nodename = "_974" />
+    </constant>
+    <dot name = "_24" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_22" />
+    </dot>
+    <extract name = "_25" type = "float">
+        <input name = "in" type = "vector3" nodename = "_24" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_26" type = "float">
+        <input name = "in" type = "vector3" nodename = "_24" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_27" type = "float">
+        <input name = "in" type = "vector3" nodename = "_24" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_28" type = "float">
+        <input name = "in1" type = "float" nodename = "_25" />
+        <input name = "in2" type = "float" nodename = "_29" />
+    </add>
+    <constant name = "_29" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <dot name = "_30" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_31" />
+    </dot>
+    <combine4 name = "_31" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_32" />
+        <input name = "in2" type = "float" nodename = "_33" />
+        <input name = "in3" type = "float" nodename = "_34" />
+        <input name = "in4" type = "float" nodename = "_35" />
+    </combine4>
+    <dot name = "_32" type = "float">
+        <input name = "in" type = "float" nodename = "_28" />
+    </dot>
+    <dot name = "_33" type = "float">
+        <input name = "in" type = "float" nodename = "_26" />
+    </dot>
+    <dot name = "_34" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_35" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_36" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_37" />
+    </dot>
+    <combine3 name = "_37" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_32" />
+        <input name = "in2" type = "float" nodename = "_33" />
+        <input name = "in3" type = "float" nodename = "_34" />
+    </combine3>
+    <dot name = "_38" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_39" />
+    </dot>
+    <combine2 name = "_39" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_32" />
+        <input name = "in2" type = "float" nodename = "_33" />
+    </combine2>
+    <dot name = "_40" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_41" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_41" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_42" />
+        <input name = "texcoord" type = "vector2" nodename = "_43" />
+        <input name = "lod" type = "float" nodename = "_49" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_42" type = "filename">
+        <input name = "in" type = "filename" nodename = "_23" />
+    </dot>
+    <add name = "_43" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_44" />
+        <input name = "in2" type = "vector2" nodename = "_48" />
+    </add>
+    <multiply name = "_44" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_45" />
+        <input name = "in2" type = "vector2" nodename = "_46" />
+    </multiply>
+    <dot name = "_45" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_58" />
+    </dot>
+    <swizzle name = "_46" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_47" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_47" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_48" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_47" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_49" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_50" type = "float">
+        <input name = "in" type = "float" nodename = "_51" />
+    </dot>
+    <swizzle name = "_51" type = "float">
+        <input name = "in" type = "vector4" nodename = "_41" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_52" type = "float">
+        <input name = "in" type = "float" nodename = "_53" />
+    </dot>
+    <swizzle name = "_53" type = "float">
+        <input name = "in" type = "vector4" nodename = "_41" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_54" type = "float">
+        <input name = "in" type = "float" nodename = "_55" />
+    </dot>
+    <swizzle name = "_55" type = "float">
+        <input name = "in" type = "vector4" nodename = "_41" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_56" type = "float">
+        <input name = "in" type = "float" nodename = "_57" />
+    </dot>
+    <swizzle name = "_57" type = "float">
+        <input name = "in" type = "vector4" nodename = "_41" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_58" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_21" />
+        <input name = "in2" type = "vector2" nodename = "_59" />
+    </add>
+    <multiply name = "_59" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_75" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_60" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_61" />
+    </dot>
+    <combine4 name = "_61" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_62" />
+        <input name = "in2" type = "float" nodename = "_63" />
+        <input name = "in3" type = "float" nodename = "_64" />
+        <input name = "in4" type = "float" nodename = "_65" />
+    </combine4>
+    <dot name = "_62" type = "float">
+        <input name = "in" type = "float" nodename = "_50" />
+    </dot>
+    <dot name = "_63" type = "float">
+        <input name = "in" type = "float" nodename = "_52" />
+    </dot>
+    <dot name = "_64" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_65" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_66" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_67" />
+    </dot>
+    <combine3 name = "_67" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_62" />
+        <input name = "in2" type = "float" nodename = "_63" />
+        <input name = "in3" type = "float" nodename = "_64" />
+    </combine3>
+    <dot name = "_68" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_69" />
+    </dot>
+    <combine2 name = "_69" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_62" />
+        <input name = "in2" type = "float" nodename = "_63" />
+    </combine2>
+    <constant name = "_70" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_20" />
+    </constant>
+    <swizzle name = "_71" type = "float">
+        <input name = "in" type = "vector3" nodename = "_70" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_72" type = "float">
+        <input name = "in" type = "vector3" nodename = "_70" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_73" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_71" />
+    </divide>
+    <divide name = "_74" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_72" />
+    </divide>
+    <combine2 name = "_75" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_73" />
+        <input name = "in2" type = "float" nodename = "_74" />
+    </combine2>
+    <modulo name = "_76" type = "float">
+        <input name = "in1" type = "float" nodename = "_79" />
+        <input name = "in2" type = "float" nodename = "_96" />
+    </modulo>
+    <divide name = "_77" type = "float">
+        <input name = "in1" type = "float" nodename = "_97" />
+        <input name = "in2" type = "float" nodename = "_96" />
+    </divide>
+    <floor name = "_78" type = "float">
+        <input name = "in" type = "float" nodename = "_90" />
+    </floor>
+    <constant name = "_79" type = "float">
+        <input name = "value" type = "float" nodename = "_983" />
+    </constant>
+    <dot name = "_80" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_81" />
+    </dot>
+    <combine4 name = "_81" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_82" />
+        <input name = "in2" type = "float" nodename = "_83" />
+        <input name = "in3" type = "float" nodename = "_84" />
+        <input name = "in4" type = "float" nodename = "_85" />
+    </combine4>
+    <dot name = "_82" type = "float">
+        <input name = "in" type = "float" nodename = "_93" />
+    </dot>
+    <dot name = "_83" type = "float">
+        <input name = "in" type = "float" nodename = "_78" />
+    </dot>
+    <dot name = "_84" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_85" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_86" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_87" />
+    </dot>
+    <combine3 name = "_87" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_82" />
+        <input name = "in2" type = "float" nodename = "_83" />
+        <input name = "in3" type = "float" nodename = "_84" />
+    </combine3>
+    <dot name = "_88" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_89" />
+    </dot>
+    <combine2 name = "_89" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_82" />
+        <input name = "in2" type = "float" nodename = "_83" />
+    </combine2>
+    <add name = "_90" type = "float">
+        <input name = "in1" type = "float" nodename = "_77" />
+        <input name = "in2" type = "float" nodename = "_91" />
+    </add>
+    <constant name = "_91" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <round name = "_92" type = "float">
+        <input name = "in" type = "float" nodename = "_76" />
+    </round>
+    <ifgreater name = "_93" type = "float">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "_92" />
+        <input name = "value1" type = "float" nodename = "_94" />
+    </ifgreater>
+    <absval name = "_94" type = "float">
+        <input name = "in" type = "float" nodename = "_95" />
+    </absval>
+    <ifgreatereq name = "_95" type = "float">
+        <input name = "value1" type = "float" nodename = "_92" />
+        <input name = "value2" type = "float" nodename = "_96" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <constant name = "_96" type = "float">
+        <input name = "value" type = "float" nodename = "_99" />
+    </constant>
+    <add name = "_97" type = "float">
+        <input name = "in1" type = "float" nodename = "_79" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </add>
+    <realitykit_geometry_modifier_vertex_id name = "_98" type = "integer">
+    </realitykit_geometry_modifier_vertex_id>
+    <swizzle name = "_99" type = "float">
+        <input name = "in" type = "vector3" nodename = "_20" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_100" type = "float">
+        <input name = "in" type = "vector3" nodename = "_20" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_101" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_99" />
+    </divide>
+    <divide name = "_102" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_100" />
+    </divide>
+    <divide name = "_103" type = "float">
+        <input name = "in1" type = "float" nodename = "_50" />
+        <input name = "in2" type = "float" value = "2" />
+    </divide>
+    <multiply name = "_104" type = "float">
+        <input name = "in1" type = "float" nodename = "_933" />
+        <input name = "in2" type = "float" value = "13" />
+    </multiply>
+    <modulo name = "_105" type = "float">
+        <input name = "in1" type = "float" nodename = "_108" />
+        <input name = "in2" type = "float" nodename = "_125" />
+    </modulo>
+    <divide name = "_106" type = "float">
+        <input name = "in1" type = "float" nodename = "_126" />
+        <input name = "in2" type = "float" nodename = "_125" />
+    </divide>
+    <floor name = "_107" type = "float">
+        <input name = "in" type = "float" nodename = "_119" />
+    </floor>
+    <constant name = "_108" type = "float">
+        <input name = "value" type = "float" nodename = "_104" />
+    </constant>
+    <dot name = "_109" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_110" />
+    </dot>
+    <combine4 name = "_110" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_111" />
+        <input name = "in2" type = "float" nodename = "_112" />
+        <input name = "in3" type = "float" nodename = "_113" />
+        <input name = "in4" type = "float" nodename = "_114" />
+    </combine4>
+    <dot name = "_111" type = "float">
+        <input name = "in" type = "float" nodename = "_122" />
+    </dot>
+    <dot name = "_112" type = "float">
+        <input name = "in" type = "float" nodename = "_107" />
+    </dot>
+    <dot name = "_113" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_114" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_115" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_116" />
+    </dot>
+    <combine3 name = "_116" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_111" />
+        <input name = "in2" type = "float" nodename = "_112" />
+        <input name = "in3" type = "float" nodename = "_113" />
+    </combine3>
+    <dot name = "_117" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_118" />
+    </dot>
+    <combine2 name = "_118" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_111" />
+        <input name = "in2" type = "float" nodename = "_112" />
+    </combine2>
+    <add name = "_119" type = "float">
+        <input name = "in1" type = "float" nodename = "_106" />
+        <input name = "in2" type = "float" nodename = "_120" />
+    </add>
+    <constant name = "_120" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <round name = "_121" type = "float">
+        <input name = "in" type = "float" nodename = "_105" />
+    </round>
+    <ifgreater name = "_122" type = "float">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" nodename = "_121" />
+        <input name = "value1" type = "float" nodename = "_123" />
+    </ifgreater>
+    <absval name = "_123" type = "float">
+        <input name = "in" type = "float" nodename = "_124" />
+    </absval>
+    <ifgreatereq name = "_124" type = "float">
+        <input name = "value1" type = "float" nodename = "_121" />
+        <input name = "value2" type = "float" nodename = "_125" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreatereq>
+    <constant name = "_125" type = "float">
+        <input name = "value" type = "float" nodename = "_128" />
+    </constant>
+    <add name = "_126" type = "float">
+        <input name = "in1" type = "float" nodename = "_108" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </add>
+    <constant name = "_127" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "TextureSize_TrailsVertexDataTexture" />
+    </constant>
+    <swizzle name = "_128" type = "float">
+        <input name = "in" type = "vector3" nodename = "_127" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_129" type = "float">
+        <input name = "in" type = "vector3" nodename = "_127" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_130" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_128" />
+    </divide>
+    <divide name = "_131" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_129" />
+    </divide>
+    <dot name = "_132" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_133" />
+    </dot>
+    <combine4 name = "_133" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_134" />
+        <input name = "in2" type = "float" nodename = "_135" />
+        <input name = "in3" type = "float" nodename = "_136" />
+        <input name = "in4" type = "float" nodename = "_137" />
+    </combine4>
+    <dot name = "_134" type = "float">
+        <input name = "in" type = "float" nodename = "_172" />
+    </dot>
+    <dot name = "_135" type = "float">
+        <input name = "in" type = "float" nodename = "_227" />
+    </dot>
+    <dot name = "_136" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_137" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_138" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_139" />
+    </dot>
+    <combine3 name = "_139" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_134" />
+        <input name = "in2" type = "float" nodename = "_135" />
+        <input name = "in3" type = "float" nodename = "_136" />
+    </combine3>
+    <dot name = "_140" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_141" />
+    </dot>
+    <combine2 name = "_141" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_134" />
+        <input name = "in2" type = "float" nodename = "_135" />
+    </combine2>
+    <constant name = "_142" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <multiply name = "_143" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_160" />
+        <input name = "in2" type = "vector2" nodename = "_197" />
+    </multiply>
+    <constant name = "_144" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_254" />
+    </constant>
+    <constant name = "_145" type = "filename">
+        <input name = "value" type = "filename" nodename = "_253" />
+    </constant>
+    <dot name = "_146" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_144" />
+    </dot>
+    <extract name = "_147" type = "float">
+        <input name = "in" type = "vector3" nodename = "_146" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_148" type = "float">
+        <input name = "in" type = "vector3" nodename = "_146" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_149" type = "float">
+        <input name = "in" type = "vector3" nodename = "_146" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_150" type = "float">
+        <input name = "in1" type = "float" nodename = "_147" />
+        <input name = "in2" type = "float" nodename = "_151" />
+    </add>
+    <constant name = "_151" type = "float">
+        <input name = "value" type = "float" nodename = "_255" />
+    </constant>
+    <dot name = "_152" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_153" />
+    </dot>
+    <combine4 name = "_153" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_154" />
+        <input name = "in2" type = "float" nodename = "_155" />
+        <input name = "in3" type = "float" nodename = "_156" />
+        <input name = "in4" type = "float" nodename = "_157" />
+    </combine4>
+    <dot name = "_154" type = "float">
+        <input name = "in" type = "float" nodename = "_150" />
+    </dot>
+    <dot name = "_155" type = "float">
+        <input name = "in" type = "float" nodename = "_148" />
+    </dot>
+    <dot name = "_156" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_157" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_158" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_159" />
+    </dot>
+    <combine3 name = "_159" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_154" />
+        <input name = "in2" type = "float" nodename = "_155" />
+        <input name = "in3" type = "float" nodename = "_156" />
+    </combine3>
+    <dot name = "_160" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_161" />
+    </dot>
+    <combine2 name = "_161" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_154" />
+        <input name = "in2" type = "float" nodename = "_155" />
+    </combine2>
+    <dot name = "_162" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_163" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_163" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_164" />
+        <input name = "texcoord" type = "vector2" nodename = "_165" />
+        <input name = "lod" type = "float" nodename = "_171" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_164" type = "filename">
+        <input name = "in" type = "filename" nodename = "_145" />
+    </dot>
+    <add name = "_165" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_166" />
+        <input name = "in2" type = "vector2" nodename = "_170" />
+    </add>
+    <multiply name = "_166" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_167" />
+        <input name = "in2" type = "vector2" nodename = "_168" />
+    </multiply>
+    <dot name = "_167" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_180" />
+    </dot>
+    <swizzle name = "_168" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_169" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_169" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_170" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_169" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_171" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_172" type = "float">
+        <input name = "in" type = "float" nodename = "_173" />
+    </dot>
+    <swizzle name = "_173" type = "float">
+        <input name = "in" type = "vector4" nodename = "_163" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_174" type = "float">
+        <input name = "in" type = "float" nodename = "_175" />
+    </dot>
+    <swizzle name = "_175" type = "float">
+        <input name = "in" type = "vector4" nodename = "_163" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_176" type = "float">
+        <input name = "in" type = "float" nodename = "_177" />
+    </dot>
+    <swizzle name = "_177" type = "float">
+        <input name = "in" type = "vector4" nodename = "_163" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_178" type = "float">
+        <input name = "in" type = "float" nodename = "_179" />
+    </dot>
+    <swizzle name = "_179" type = "float">
+        <input name = "in" type = "vector4" nodename = "_163" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_180" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_143" />
+        <input name = "in2" type = "vector2" nodename = "_181" />
+    </add>
+    <multiply name = "_181" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_197" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_182" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_183" />
+    </dot>
+    <combine4 name = "_183" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_184" />
+        <input name = "in2" type = "float" nodename = "_185" />
+        <input name = "in3" type = "float" nodename = "_186" />
+        <input name = "in4" type = "float" nodename = "_187" />
+    </combine4>
+    <dot name = "_184" type = "float">
+        <input name = "in" type = "float" nodename = "_172" />
+    </dot>
+    <dot name = "_185" type = "float">
+        <input name = "in" type = "float" nodename = "_174" />
+    </dot>
+    <dot name = "_186" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_187" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_188" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_189" />
+    </dot>
+    <combine3 name = "_189" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_184" />
+        <input name = "in2" type = "float" nodename = "_185" />
+        <input name = "in3" type = "float" nodename = "_186" />
+    </combine3>
+    <dot name = "_190" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_191" />
+    </dot>
+    <combine2 name = "_191" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_184" />
+        <input name = "in2" type = "float" nodename = "_185" />
+    </combine2>
+    <constant name = "_192" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_142" />
+    </constant>
+    <swizzle name = "_193" type = "float">
+        <input name = "in" type = "vector3" nodename = "_192" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_194" type = "float">
+        <input name = "in" type = "vector3" nodename = "_192" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_195" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_193" />
+    </divide>
+    <divide name = "_196" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_194" />
+    </divide>
+    <combine2 name = "_197" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_195" />
+        <input name = "in2" type = "float" nodename = "_196" />
+    </combine2>
+    <multiply name = "_198" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_215" />
+        <input name = "in2" type = "vector2" nodename = "_252" />
+    </multiply>
+    <constant name = "_199" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_254" />
+    </constant>
+    <constant name = "_200" type = "filename">
+        <input name = "value" type = "filename" nodename = "_253" />
+    </constant>
+    <dot name = "_201" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_199" />
+    </dot>
+    <extract name = "_202" type = "float">
+        <input name = "in" type = "vector3" nodename = "_201" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_203" type = "float">
+        <input name = "in" type = "vector3" nodename = "_201" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_204" type = "float">
+        <input name = "in" type = "vector3" nodename = "_201" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_205" type = "float">
+        <input name = "in1" type = "float" nodename = "_202" />
+        <input name = "in2" type = "float" nodename = "_206" />
+    </add>
+    <constant name = "_206" type = "float">
+        <input name = "value" type = "float" nodename = "_256" />
+    </constant>
+    <dot name = "_207" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_208" />
+    </dot>
+    <combine4 name = "_208" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_209" />
+        <input name = "in2" type = "float" nodename = "_210" />
+        <input name = "in3" type = "float" nodename = "_211" />
+        <input name = "in4" type = "float" nodename = "_212" />
+    </combine4>
+    <dot name = "_209" type = "float">
+        <input name = "in" type = "float" nodename = "_205" />
+    </dot>
+    <dot name = "_210" type = "float">
+        <input name = "in" type = "float" nodename = "_203" />
+    </dot>
+    <dot name = "_211" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_212" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_213" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_214" />
+    </dot>
+    <combine3 name = "_214" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_209" />
+        <input name = "in2" type = "float" nodename = "_210" />
+        <input name = "in3" type = "float" nodename = "_211" />
+    </combine3>
+    <dot name = "_215" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_216" />
+    </dot>
+    <combine2 name = "_216" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_209" />
+        <input name = "in2" type = "float" nodename = "_210" />
+    </combine2>
+    <dot name = "_217" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_218" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_218" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_219" />
+        <input name = "texcoord" type = "vector2" nodename = "_220" />
+        <input name = "lod" type = "float" nodename = "_226" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_219" type = "filename">
+        <input name = "in" type = "filename" nodename = "_200" />
+    </dot>
+    <add name = "_220" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_221" />
+        <input name = "in2" type = "vector2" nodename = "_225" />
+    </add>
+    <multiply name = "_221" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_222" />
+        <input name = "in2" type = "vector2" nodename = "_223" />
+    </multiply>
+    <dot name = "_222" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_235" />
+    </dot>
+    <swizzle name = "_223" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_224" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_224" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_225" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_224" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_226" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_227" type = "float">
+        <input name = "in" type = "float" nodename = "_228" />
+    </dot>
+    <swizzle name = "_228" type = "float">
+        <input name = "in" type = "vector4" nodename = "_218" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_229" type = "float">
+        <input name = "in" type = "float" nodename = "_230" />
+    </dot>
+    <swizzle name = "_230" type = "float">
+        <input name = "in" type = "vector4" nodename = "_218" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_231" type = "float">
+        <input name = "in" type = "float" nodename = "_232" />
+    </dot>
+    <swizzle name = "_232" type = "float">
+        <input name = "in" type = "vector4" nodename = "_218" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_233" type = "float">
+        <input name = "in" type = "float" nodename = "_234" />
+    </dot>
+    <swizzle name = "_234" type = "float">
+        <input name = "in" type = "vector4" nodename = "_218" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_235" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_198" />
+        <input name = "in2" type = "vector2" nodename = "_236" />
+    </add>
+    <multiply name = "_236" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_252" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_237" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_238" />
+    </dot>
+    <combine4 name = "_238" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_239" />
+        <input name = "in2" type = "float" nodename = "_240" />
+        <input name = "in3" type = "float" nodename = "_241" />
+        <input name = "in4" type = "float" nodename = "_242" />
+    </combine4>
+    <dot name = "_239" type = "float">
+        <input name = "in" type = "float" nodename = "_227" />
+    </dot>
+    <dot name = "_240" type = "float">
+        <input name = "in" type = "float" nodename = "_229" />
+    </dot>
+    <dot name = "_241" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_242" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_243" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_244" />
+    </dot>
+    <combine3 name = "_244" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_239" />
+        <input name = "in2" type = "float" nodename = "_240" />
+        <input name = "in3" type = "float" nodename = "_241" />
+    </combine3>
+    <dot name = "_245" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_246" />
+    </dot>
+    <combine2 name = "_246" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_239" />
+        <input name = "in2" type = "float" nodename = "_240" />
+    </combine2>
+    <constant name = "_247" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_142" />
+    </constant>
+    <swizzle name = "_248" type = "float">
+        <input name = "in" type = "vector3" nodename = "_247" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_249" type = "float">
+        <input name = "in" type = "vector3" nodename = "_247" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_250" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_248" />
+    </divide>
+    <divide name = "_251" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_249" />
+    </divide>
+    <combine2 name = "_252" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_250" />
+        <input name = "in2" type = "float" nodename = "_251" />
+    </combine2>
+    <constant name = "_253" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <constant name = "_254" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_255" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <add name = "_256" type = "float">
+        <input name = "in1" type = "float" nodename = "_255" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <dot name = "_257" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_278" />
+    </dot>
+    <floor name = "_258" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_257" />
+    </floor>
+    <subtract name = "_259" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_257" />
+        <input name = "in2" type = "vector2" nodename = "_258" />
+    </subtract>
+    <floor name = "_260" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_278" />
+    </floor>
+    <dot name = "_261" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_279" />
+    </dot>
+    <extract name = "_262" type = "float">
+        <input name = "in" type = "vector2" nodename = "_261" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_263" type = "float">
+        <input name = "in" type = "vector2" nodename = "_261" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <dot name = "_264" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_277" />
+    </dot>
+    <extract name = "_265" type = "float">
+        <input name = "in" type = "vector2" nodename = "_264" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_266" type = "float">
+        <input name = "in" type = "vector2" nodename = "_264" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <dot name = "_267" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_268" />
+    </dot>
+    <combine4 name = "_268" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_269" />
+        <input name = "in2" type = "float" nodename = "_270" />
+        <input name = "in3" type = "float" nodename = "_271" />
+        <input name = "in4" type = "float" nodename = "_272" />
+    </combine4>
+    <dot name = "_269" type = "float">
+        <input name = "in" type = "float" nodename = "_262" />
+    </dot>
+    <dot name = "_270" type = "float">
+        <input name = "in" type = "float" nodename = "_265" />
+    </dot>
+    <dot name = "_271" type = "float">
+        <input name = "in" type = "float" nodename = "_263" />
+    </dot>
+    <dot name = "_272" type = "float">
+        <input name = "in" type = "float" nodename = "_266" />
+    </dot>
+    <dot name = "_273" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_274" />
+    </dot>
+    <combine3 name = "_274" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_269" />
+        <input name = "in2" type = "float" nodename = "_270" />
+        <input name = "in3" type = "float" nodename = "_271" />
+    </combine3>
+    <dot name = "_275" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_276" />
+    </dot>
+    <combine2 name = "_276" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_269" />
+        <input name = "in2" type = "float" nodename = "_270" />
+    </combine2>
+    <divide name = "_277" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_259" />
+        <input name = "in2" type = "vector2" value = "0.999,0.999" />
+    </divide>
+    <constant name = "_278" type = "vector2">
+        <input name = "value" type = "vector2" nodename = "_140" />
+    </constant>
+    <divide name = "_279" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_260" />
+        <input name = "in2" type = "vector2" value = "255,255" />
+    </divide>
+    <dot name = "_280" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_281" />
+    </dot>
+    <combine4 name = "_281" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_282" />
+        <input name = "in2" type = "float" nodename = "_283" />
+        <input name = "in3" type = "float" nodename = "_284" />
+        <input name = "in4" type = "float" nodename = "_285" />
+    </combine4>
+    <dot name = "_282" type = "float">
+        <input name = "in" type = "float" nodename = "_320" />
+    </dot>
+    <dot name = "_283" type = "float">
+        <input name = "in" type = "float" nodename = "_430" />
+    </dot>
+    <dot name = "_284" type = "float">
+        <input name = "in" type = "float" nodename = "_375" />
+    </dot>
+    <dot name = "_285" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_286" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_287" />
+    </dot>
+    <combine3 name = "_287" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_282" />
+        <input name = "in2" type = "float" nodename = "_283" />
+        <input name = "in3" type = "float" nodename = "_284" />
+    </combine3>
+    <dot name = "_288" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_289" />
+    </dot>
+    <combine2 name = "_289" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_282" />
+        <input name = "in2" type = "float" nodename = "_283" />
+    </combine2>
+    <constant name = "_290" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <multiply name = "_291" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_308" />
+        <input name = "in2" type = "vector2" nodename = "_345" />
+    </multiply>
+    <constant name = "_292" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_457" />
+    </constant>
+    <constant name = "_293" type = "filename">
+        <input name = "value" type = "filename" nodename = "_456" />
+    </constant>
+    <dot name = "_294" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_292" />
+    </dot>
+    <extract name = "_295" type = "float">
+        <input name = "in" type = "vector3" nodename = "_294" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_296" type = "float">
+        <input name = "in" type = "vector3" nodename = "_294" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_297" type = "float">
+        <input name = "in" type = "vector3" nodename = "_294" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_298" type = "float">
+        <input name = "in1" type = "float" nodename = "_295" />
+        <input name = "in2" type = "float" nodename = "_299" />
+    </add>
+    <constant name = "_299" type = "float">
+        <input name = "value" type = "float" nodename = "_458" />
+    </constant>
+    <dot name = "_300" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_301" />
+    </dot>
+    <combine4 name = "_301" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_302" />
+        <input name = "in2" type = "float" nodename = "_303" />
+        <input name = "in3" type = "float" nodename = "_304" />
+        <input name = "in4" type = "float" nodename = "_305" />
+    </combine4>
+    <dot name = "_302" type = "float">
+        <input name = "in" type = "float" nodename = "_298" />
+    </dot>
+    <dot name = "_303" type = "float">
+        <input name = "in" type = "float" nodename = "_296" />
+    </dot>
+    <dot name = "_304" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_305" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_306" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_307" />
+    </dot>
+    <combine3 name = "_307" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_302" />
+        <input name = "in2" type = "float" nodename = "_303" />
+        <input name = "in3" type = "float" nodename = "_304" />
+    </combine3>
+    <dot name = "_308" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_309" />
+    </dot>
+    <combine2 name = "_309" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_302" />
+        <input name = "in2" type = "float" nodename = "_303" />
+    </combine2>
+    <dot name = "_310" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_311" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_311" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_312" />
+        <input name = "texcoord" type = "vector2" nodename = "_313" />
+        <input name = "lod" type = "float" nodename = "_319" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_312" type = "filename">
+        <input name = "in" type = "filename" nodename = "_293" />
+    </dot>
+    <add name = "_313" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_314" />
+        <input name = "in2" type = "vector2" nodename = "_318" />
+    </add>
+    <multiply name = "_314" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_315" />
+        <input name = "in2" type = "vector2" nodename = "_316" />
+    </multiply>
+    <dot name = "_315" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_328" />
+    </dot>
+    <swizzle name = "_316" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_317" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_317" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_318" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_317" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_319" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_320" type = "float">
+        <input name = "in" type = "float" nodename = "_321" />
+    </dot>
+    <swizzle name = "_321" type = "float">
+        <input name = "in" type = "vector4" nodename = "_311" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_322" type = "float">
+        <input name = "in" type = "float" nodename = "_323" />
+    </dot>
+    <swizzle name = "_323" type = "float">
+        <input name = "in" type = "vector4" nodename = "_311" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_324" type = "float">
+        <input name = "in" type = "float" nodename = "_325" />
+    </dot>
+    <swizzle name = "_325" type = "float">
+        <input name = "in" type = "vector4" nodename = "_311" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_326" type = "float">
+        <input name = "in" type = "float" nodename = "_327" />
+    </dot>
+    <swizzle name = "_327" type = "float">
+        <input name = "in" type = "vector4" nodename = "_311" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_328" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_291" />
+        <input name = "in2" type = "vector2" nodename = "_329" />
+    </add>
+    <multiply name = "_329" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_345" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_330" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_331" />
+    </dot>
+    <combine4 name = "_331" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_332" />
+        <input name = "in2" type = "float" nodename = "_333" />
+        <input name = "in3" type = "float" nodename = "_334" />
+        <input name = "in4" type = "float" nodename = "_335" />
+    </combine4>
+    <dot name = "_332" type = "float">
+        <input name = "in" type = "float" nodename = "_320" />
+    </dot>
+    <dot name = "_333" type = "float">
+        <input name = "in" type = "float" nodename = "_322" />
+    </dot>
+    <dot name = "_334" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_335" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_336" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_337" />
+    </dot>
+    <combine3 name = "_337" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_332" />
+        <input name = "in2" type = "float" nodename = "_333" />
+        <input name = "in3" type = "float" nodename = "_334" />
+    </combine3>
+    <dot name = "_338" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_339" />
+    </dot>
+    <combine2 name = "_339" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_332" />
+        <input name = "in2" type = "float" nodename = "_333" />
+    </combine2>
+    <constant name = "_340" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_290" />
+    </constant>
+    <swizzle name = "_341" type = "float">
+        <input name = "in" type = "vector3" nodename = "_340" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_342" type = "float">
+        <input name = "in" type = "vector3" nodename = "_340" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_343" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_341" />
+    </divide>
+    <divide name = "_344" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_342" />
+    </divide>
+    <combine2 name = "_345" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_343" />
+        <input name = "in2" type = "float" nodename = "_344" />
+    </combine2>
+    <multiply name = "_346" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_363" />
+        <input name = "in2" type = "vector2" nodename = "_400" />
+    </multiply>
+    <constant name = "_347" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_457" />
+    </constant>
+    <constant name = "_348" type = "filename">
+        <input name = "value" type = "filename" nodename = "_456" />
+    </constant>
+    <dot name = "_349" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_347" />
+    </dot>
+    <extract name = "_350" type = "float">
+        <input name = "in" type = "vector3" nodename = "_349" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_351" type = "float">
+        <input name = "in" type = "vector3" nodename = "_349" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_352" type = "float">
+        <input name = "in" type = "vector3" nodename = "_349" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_353" type = "float">
+        <input name = "in1" type = "float" nodename = "_350" />
+        <input name = "in2" type = "float" nodename = "_354" />
+    </add>
+    <constant name = "_354" type = "float">
+        <input name = "value" type = "float" nodename = "_460" />
+    </constant>
+    <dot name = "_355" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_356" />
+    </dot>
+    <combine4 name = "_356" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_357" />
+        <input name = "in2" type = "float" nodename = "_358" />
+        <input name = "in3" type = "float" nodename = "_359" />
+        <input name = "in4" type = "float" nodename = "_360" />
+    </combine4>
+    <dot name = "_357" type = "float">
+        <input name = "in" type = "float" nodename = "_353" />
+    </dot>
+    <dot name = "_358" type = "float">
+        <input name = "in" type = "float" nodename = "_351" />
+    </dot>
+    <dot name = "_359" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_360" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_361" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_362" />
+    </dot>
+    <combine3 name = "_362" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_357" />
+        <input name = "in2" type = "float" nodename = "_358" />
+        <input name = "in3" type = "float" nodename = "_359" />
+    </combine3>
+    <dot name = "_363" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_364" />
+    </dot>
+    <combine2 name = "_364" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_357" />
+        <input name = "in2" type = "float" nodename = "_358" />
+    </combine2>
+    <dot name = "_365" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_366" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_366" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_367" />
+        <input name = "texcoord" type = "vector2" nodename = "_368" />
+        <input name = "lod" type = "float" nodename = "_374" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_367" type = "filename">
+        <input name = "in" type = "filename" nodename = "_348" />
+    </dot>
+    <add name = "_368" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_369" />
+        <input name = "in2" type = "vector2" nodename = "_373" />
+    </add>
+    <multiply name = "_369" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_370" />
+        <input name = "in2" type = "vector2" nodename = "_371" />
+    </multiply>
+    <dot name = "_370" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_383" />
+    </dot>
+    <swizzle name = "_371" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_372" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_372" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_373" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_372" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_374" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_375" type = "float">
+        <input name = "in" type = "float" nodename = "_376" />
+    </dot>
+    <swizzle name = "_376" type = "float">
+        <input name = "in" type = "vector4" nodename = "_366" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_377" type = "float">
+        <input name = "in" type = "float" nodename = "_378" />
+    </dot>
+    <swizzle name = "_378" type = "float">
+        <input name = "in" type = "vector4" nodename = "_366" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_379" type = "float">
+        <input name = "in" type = "float" nodename = "_380" />
+    </dot>
+    <swizzle name = "_380" type = "float">
+        <input name = "in" type = "vector4" nodename = "_366" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_381" type = "float">
+        <input name = "in" type = "float" nodename = "_382" />
+    </dot>
+    <swizzle name = "_382" type = "float">
+        <input name = "in" type = "vector4" nodename = "_366" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_383" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_346" />
+        <input name = "in2" type = "vector2" nodename = "_384" />
+    </add>
+    <multiply name = "_384" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_400" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_385" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_386" />
+    </dot>
+    <combine4 name = "_386" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_387" />
+        <input name = "in2" type = "float" nodename = "_388" />
+        <input name = "in3" type = "float" nodename = "_389" />
+        <input name = "in4" type = "float" nodename = "_390" />
+    </combine4>
+    <dot name = "_387" type = "float">
+        <input name = "in" type = "float" nodename = "_375" />
+    </dot>
+    <dot name = "_388" type = "float">
+        <input name = "in" type = "float" nodename = "_377" />
+    </dot>
+    <dot name = "_389" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_390" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_391" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_392" />
+    </dot>
+    <combine3 name = "_392" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_387" />
+        <input name = "in2" type = "float" nodename = "_388" />
+        <input name = "in3" type = "float" nodename = "_389" />
+    </combine3>
+    <dot name = "_393" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_394" />
+    </dot>
+    <combine2 name = "_394" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_387" />
+        <input name = "in2" type = "float" nodename = "_388" />
+    </combine2>
+    <constant name = "_395" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_290" />
+    </constant>
+    <swizzle name = "_396" type = "float">
+        <input name = "in" type = "vector3" nodename = "_395" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_397" type = "float">
+        <input name = "in" type = "vector3" nodename = "_395" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_398" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_396" />
+    </divide>
+    <divide name = "_399" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_397" />
+    </divide>
+    <combine2 name = "_400" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_398" />
+        <input name = "in2" type = "float" nodename = "_399" />
+    </combine2>
+    <multiply name = "_401" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_418" />
+        <input name = "in2" type = "vector2" nodename = "_455" />
+    </multiply>
+    <constant name = "_402" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_457" />
+    </constant>
+    <constant name = "_403" type = "filename">
+        <input name = "value" type = "filename" nodename = "_456" />
+    </constant>
+    <dot name = "_404" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_402" />
+    </dot>
+    <extract name = "_405" type = "float">
+        <input name = "in" type = "vector3" nodename = "_404" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_406" type = "float">
+        <input name = "in" type = "vector3" nodename = "_404" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_407" type = "float">
+        <input name = "in" type = "vector3" nodename = "_404" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_408" type = "float">
+        <input name = "in1" type = "float" nodename = "_405" />
+        <input name = "in2" type = "float" nodename = "_409" />
+    </add>
+    <constant name = "_409" type = "float">
+        <input name = "value" type = "float" nodename = "_459" />
+    </constant>
+    <dot name = "_410" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_411" />
+    </dot>
+    <combine4 name = "_411" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_412" />
+        <input name = "in2" type = "float" nodename = "_413" />
+        <input name = "in3" type = "float" nodename = "_414" />
+        <input name = "in4" type = "float" nodename = "_415" />
+    </combine4>
+    <dot name = "_412" type = "float">
+        <input name = "in" type = "float" nodename = "_408" />
+    </dot>
+    <dot name = "_413" type = "float">
+        <input name = "in" type = "float" nodename = "_406" />
+    </dot>
+    <dot name = "_414" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_415" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_416" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_417" />
+    </dot>
+    <combine3 name = "_417" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_412" />
+        <input name = "in2" type = "float" nodename = "_413" />
+        <input name = "in3" type = "float" nodename = "_414" />
+    </combine3>
+    <dot name = "_418" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_419" />
+    </dot>
+    <combine2 name = "_419" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_412" />
+        <input name = "in2" type = "float" nodename = "_413" />
+    </combine2>
+    <dot name = "_420" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_421" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_421" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_422" />
+        <input name = "texcoord" type = "vector2" nodename = "_423" />
+        <input name = "lod" type = "float" nodename = "_429" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_422" type = "filename">
+        <input name = "in" type = "filename" nodename = "_403" />
+    </dot>
+    <add name = "_423" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_424" />
+        <input name = "in2" type = "vector2" nodename = "_428" />
+    </add>
+    <multiply name = "_424" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_425" />
+        <input name = "in2" type = "vector2" nodename = "_426" />
+    </multiply>
+    <dot name = "_425" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_438" />
+    </dot>
+    <swizzle name = "_426" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_427" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_427" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_428" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_427" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_429" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_430" type = "float">
+        <input name = "in" type = "float" nodename = "_431" />
+    </dot>
+    <swizzle name = "_431" type = "float">
+        <input name = "in" type = "vector4" nodename = "_421" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_432" type = "float">
+        <input name = "in" type = "float" nodename = "_433" />
+    </dot>
+    <swizzle name = "_433" type = "float">
+        <input name = "in" type = "vector4" nodename = "_421" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_434" type = "float">
+        <input name = "in" type = "float" nodename = "_435" />
+    </dot>
+    <swizzle name = "_435" type = "float">
+        <input name = "in" type = "vector4" nodename = "_421" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_436" type = "float">
+        <input name = "in" type = "float" nodename = "_437" />
+    </dot>
+    <swizzle name = "_437" type = "float">
+        <input name = "in" type = "vector4" nodename = "_421" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_438" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_401" />
+        <input name = "in2" type = "vector2" nodename = "_439" />
+    </add>
+    <multiply name = "_439" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_455" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_440" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_441" />
+    </dot>
+    <combine4 name = "_441" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_442" />
+        <input name = "in2" type = "float" nodename = "_443" />
+        <input name = "in3" type = "float" nodename = "_444" />
+        <input name = "in4" type = "float" nodename = "_445" />
+    </combine4>
+    <dot name = "_442" type = "float">
+        <input name = "in" type = "float" nodename = "_430" />
+    </dot>
+    <dot name = "_443" type = "float">
+        <input name = "in" type = "float" nodename = "_432" />
+    </dot>
+    <dot name = "_444" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_445" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_446" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_447" />
+    </dot>
+    <combine3 name = "_447" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_442" />
+        <input name = "in2" type = "float" nodename = "_443" />
+        <input name = "in3" type = "float" nodename = "_444" />
+    </combine3>
+    <dot name = "_448" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_449" />
+    </dot>
+    <combine2 name = "_449" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_442" />
+        <input name = "in2" type = "float" nodename = "_443" />
+    </combine2>
+    <constant name = "_450" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_290" />
+    </constant>
+    <swizzle name = "_451" type = "float">
+        <input name = "in" type = "vector3" nodename = "_450" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_452" type = "float">
+        <input name = "in" type = "vector3" nodename = "_450" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_453" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_451" />
+    </divide>
+    <divide name = "_454" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_452" />
+    </divide>
+    <combine2 name = "_455" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_453" />
+        <input name = "in2" type = "float" nodename = "_454" />
+    </combine2>
+    <constant name = "_456" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <constant name = "_457" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_458" type = "float">
+        <input name = "value" type = "float" value = "2" />
+    </constant>
+    <add name = "_459" type = "float">
+        <input name = "in1" type = "float" nodename = "_458" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <add name = "_460" type = "float">
+        <input name = "in1" type = "float" nodename = "_458" />
+        <input name = "in2" type = "float" value = "2" />
+    </add>
+    <multiply name = "_461" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_478" />
+        <input name = "in2" type = "vector2" nodename = "_515" />
+    </multiply>
+    <constant name = "_462" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_463" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <dot name = "_464" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_462" />
+    </dot>
+    <extract name = "_465" type = "float">
+        <input name = "in" type = "vector3" nodename = "_464" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_466" type = "float">
+        <input name = "in" type = "vector3" nodename = "_464" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_467" type = "float">
+        <input name = "in" type = "vector3" nodename = "_464" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_468" type = "float">
+        <input name = "in1" type = "float" nodename = "_465" />
+        <input name = "in2" type = "float" nodename = "_469" />
+    </add>
+    <constant name = "_469" type = "float">
+        <input name = "value" type = "float" value = "5" />
+    </constant>
+    <dot name = "_470" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_471" />
+    </dot>
+    <combine4 name = "_471" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_472" />
+        <input name = "in2" type = "float" nodename = "_473" />
+        <input name = "in3" type = "float" nodename = "_474" />
+        <input name = "in4" type = "float" nodename = "_475" />
+    </combine4>
+    <dot name = "_472" type = "float">
+        <input name = "in" type = "float" nodename = "_468" />
+    </dot>
+    <dot name = "_473" type = "float">
+        <input name = "in" type = "float" nodename = "_466" />
+    </dot>
+    <dot name = "_474" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_475" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_476" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_477" />
+    </dot>
+    <combine3 name = "_477" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_472" />
+        <input name = "in2" type = "float" nodename = "_473" />
+        <input name = "in3" type = "float" nodename = "_474" />
+    </combine3>
+    <dot name = "_478" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_479" />
+    </dot>
+    <combine2 name = "_479" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_472" />
+        <input name = "in2" type = "float" nodename = "_473" />
+    </combine2>
+    <dot name = "_480" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_481" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_481" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_482" />
+        <input name = "texcoord" type = "vector2" nodename = "_483" />
+        <input name = "lod" type = "float" nodename = "_489" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_482" type = "filename">
+        <input name = "in" type = "filename" nodename = "_463" />
+    </dot>
+    <add name = "_483" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_484" />
+        <input name = "in2" type = "vector2" nodename = "_488" />
+    </add>
+    <multiply name = "_484" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_485" />
+        <input name = "in2" type = "vector2" nodename = "_486" />
+    </multiply>
+    <dot name = "_485" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_498" />
+    </dot>
+    <swizzle name = "_486" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_487" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_487" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_488" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_487" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_489" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_490" type = "float">
+        <input name = "in" type = "float" nodename = "_491" />
+    </dot>
+    <swizzle name = "_491" type = "float">
+        <input name = "in" type = "vector4" nodename = "_481" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_492" type = "float">
+        <input name = "in" type = "float" nodename = "_493" />
+    </dot>
+    <swizzle name = "_493" type = "float">
+        <input name = "in" type = "vector4" nodename = "_481" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_494" type = "float">
+        <input name = "in" type = "float" nodename = "_495" />
+    </dot>
+    <swizzle name = "_495" type = "float">
+        <input name = "in" type = "vector4" nodename = "_481" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_496" type = "float">
+        <input name = "in" type = "float" nodename = "_497" />
+    </dot>
+    <swizzle name = "_497" type = "float">
+        <input name = "in" type = "vector4" nodename = "_481" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_498" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_461" />
+        <input name = "in2" type = "vector2" nodename = "_499" />
+    </add>
+    <multiply name = "_499" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_515" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_500" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_501" />
+    </dot>
+    <combine4 name = "_501" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_502" />
+        <input name = "in2" type = "float" nodename = "_503" />
+        <input name = "in3" type = "float" nodename = "_504" />
+        <input name = "in4" type = "float" nodename = "_505" />
+    </combine4>
+    <dot name = "_502" type = "float">
+        <input name = "in" type = "float" nodename = "_490" />
+    </dot>
+    <dot name = "_503" type = "float">
+        <input name = "in" type = "float" nodename = "_492" />
+    </dot>
+    <dot name = "_504" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_505" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_506" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_507" />
+    </dot>
+    <combine3 name = "_507" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_502" />
+        <input name = "in2" type = "float" nodename = "_503" />
+        <input name = "in3" type = "float" nodename = "_504" />
+    </combine3>
+    <dot name = "_508" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_509" />
+    </dot>
+    <combine2 name = "_509" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_502" />
+        <input name = "in2" type = "float" nodename = "_503" />
+    </combine2>
+    <constant name = "_510" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <swizzle name = "_511" type = "float">
+        <input name = "in" type = "vector3" nodename = "_510" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_512" type = "float">
+        <input name = "in" type = "vector3" nodename = "_510" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_513" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_511" />
+    </divide>
+    <divide name = "_514" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_512" />
+    </divide>
+    <combine2 name = "_515" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_513" />
+        <input name = "in2" type = "float" nodename = "_514" />
+    </combine2>
+    <dot name = "_516" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_517" />
+    </dot>
+    <combine4 name = "_517" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_518" />
+        <input name = "in2" type = "float" nodename = "_519" />
+        <input name = "in3" type = "float" nodename = "_520" />
+        <input name = "in4" type = "float" nodename = "_521" />
+    </combine4>
+    <dot name = "_518" type = "float">
+        <input name = "in" type = "float" nodename = "_556" />
+    </dot>
+    <dot name = "_519" type = "float">
+        <input name = "in" type = "float" nodename = "_666" />
+    </dot>
+    <dot name = "_520" type = "float">
+        <input name = "in" type = "float" nodename = "_611" />
+    </dot>
+    <dot name = "_521" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_522" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_523" />
+    </dot>
+    <combine3 name = "_523" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_518" />
+        <input name = "in2" type = "float" nodename = "_519" />
+        <input name = "in3" type = "float" nodename = "_520" />
+    </combine3>
+    <dot name = "_524" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_525" />
+    </dot>
+    <combine2 name = "_525" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_518" />
+        <input name = "in2" type = "float" nodename = "_519" />
+    </combine2>
+    <constant name = "_526" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <multiply name = "_527" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_544" />
+        <input name = "in2" type = "vector2" nodename = "_581" />
+    </multiply>
+    <constant name = "_528" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_693" />
+    </constant>
+    <constant name = "_529" type = "filename">
+        <input name = "value" type = "filename" nodename = "_692" />
+    </constant>
+    <dot name = "_530" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_528" />
+    </dot>
+    <extract name = "_531" type = "float">
+        <input name = "in" type = "vector3" nodename = "_530" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_532" type = "float">
+        <input name = "in" type = "vector3" nodename = "_530" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_533" type = "float">
+        <input name = "in" type = "vector3" nodename = "_530" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_534" type = "float">
+        <input name = "in1" type = "float" nodename = "_531" />
+        <input name = "in2" type = "float" nodename = "_535" />
+    </add>
+    <constant name = "_535" type = "float">
+        <input name = "value" type = "float" nodename = "_694" />
+    </constant>
+    <dot name = "_536" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_537" />
+    </dot>
+    <combine4 name = "_537" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_538" />
+        <input name = "in2" type = "float" nodename = "_539" />
+        <input name = "in3" type = "float" nodename = "_540" />
+        <input name = "in4" type = "float" nodename = "_541" />
+    </combine4>
+    <dot name = "_538" type = "float">
+        <input name = "in" type = "float" nodename = "_534" />
+    </dot>
+    <dot name = "_539" type = "float">
+        <input name = "in" type = "float" nodename = "_532" />
+    </dot>
+    <dot name = "_540" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_541" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_542" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_543" />
+    </dot>
+    <combine3 name = "_543" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_538" />
+        <input name = "in2" type = "float" nodename = "_539" />
+        <input name = "in3" type = "float" nodename = "_540" />
+    </combine3>
+    <dot name = "_544" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_545" />
+    </dot>
+    <combine2 name = "_545" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_538" />
+        <input name = "in2" type = "float" nodename = "_539" />
+    </combine2>
+    <dot name = "_546" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_547" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_547" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_548" />
+        <input name = "texcoord" type = "vector2" nodename = "_549" />
+        <input name = "lod" type = "float" nodename = "_555" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_548" type = "filename">
+        <input name = "in" type = "filename" nodename = "_529" />
+    </dot>
+    <add name = "_549" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_550" />
+        <input name = "in2" type = "vector2" nodename = "_554" />
+    </add>
+    <multiply name = "_550" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_551" />
+        <input name = "in2" type = "vector2" nodename = "_552" />
+    </multiply>
+    <dot name = "_551" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_564" />
+    </dot>
+    <swizzle name = "_552" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_553" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_553" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_554" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_553" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_555" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_556" type = "float">
+        <input name = "in" type = "float" nodename = "_557" />
+    </dot>
+    <swizzle name = "_557" type = "float">
+        <input name = "in" type = "vector4" nodename = "_547" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_558" type = "float">
+        <input name = "in" type = "float" nodename = "_559" />
+    </dot>
+    <swizzle name = "_559" type = "float">
+        <input name = "in" type = "vector4" nodename = "_547" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_560" type = "float">
+        <input name = "in" type = "float" nodename = "_561" />
+    </dot>
+    <swizzle name = "_561" type = "float">
+        <input name = "in" type = "vector4" nodename = "_547" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_562" type = "float">
+        <input name = "in" type = "float" nodename = "_563" />
+    </dot>
+    <swizzle name = "_563" type = "float">
+        <input name = "in" type = "vector4" nodename = "_547" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_564" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_527" />
+        <input name = "in2" type = "vector2" nodename = "_565" />
+    </add>
+    <multiply name = "_565" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_581" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_566" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_567" />
+    </dot>
+    <combine4 name = "_567" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_568" />
+        <input name = "in2" type = "float" nodename = "_569" />
+        <input name = "in3" type = "float" nodename = "_570" />
+        <input name = "in4" type = "float" nodename = "_571" />
+    </combine4>
+    <dot name = "_568" type = "float">
+        <input name = "in" type = "float" nodename = "_556" />
+    </dot>
+    <dot name = "_569" type = "float">
+        <input name = "in" type = "float" nodename = "_558" />
+    </dot>
+    <dot name = "_570" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_571" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_572" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_573" />
+    </dot>
+    <combine3 name = "_573" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_568" />
+        <input name = "in2" type = "float" nodename = "_569" />
+        <input name = "in3" type = "float" nodename = "_570" />
+    </combine3>
+    <dot name = "_574" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_575" />
+    </dot>
+    <combine2 name = "_575" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_568" />
+        <input name = "in2" type = "float" nodename = "_569" />
+    </combine2>
+    <constant name = "_576" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_526" />
+    </constant>
+    <swizzle name = "_577" type = "float">
+        <input name = "in" type = "vector3" nodename = "_576" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_578" type = "float">
+        <input name = "in" type = "vector3" nodename = "_576" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_579" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_577" />
+    </divide>
+    <divide name = "_580" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_578" />
+    </divide>
+    <combine2 name = "_581" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_579" />
+        <input name = "in2" type = "float" nodename = "_580" />
+    </combine2>
+    <multiply name = "_582" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_599" />
+        <input name = "in2" type = "vector2" nodename = "_636" />
+    </multiply>
+    <constant name = "_583" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_693" />
+    </constant>
+    <constant name = "_584" type = "filename">
+        <input name = "value" type = "filename" nodename = "_692" />
+    </constant>
+    <dot name = "_585" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_583" />
+    </dot>
+    <extract name = "_586" type = "float">
+        <input name = "in" type = "vector3" nodename = "_585" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_587" type = "float">
+        <input name = "in" type = "vector3" nodename = "_585" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_588" type = "float">
+        <input name = "in" type = "vector3" nodename = "_585" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_589" type = "float">
+        <input name = "in1" type = "float" nodename = "_586" />
+        <input name = "in2" type = "float" nodename = "_590" />
+    </add>
+    <constant name = "_590" type = "float">
+        <input name = "value" type = "float" nodename = "_696" />
+    </constant>
+    <dot name = "_591" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_592" />
+    </dot>
+    <combine4 name = "_592" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_593" />
+        <input name = "in2" type = "float" nodename = "_594" />
+        <input name = "in3" type = "float" nodename = "_595" />
+        <input name = "in4" type = "float" nodename = "_596" />
+    </combine4>
+    <dot name = "_593" type = "float">
+        <input name = "in" type = "float" nodename = "_589" />
+    </dot>
+    <dot name = "_594" type = "float">
+        <input name = "in" type = "float" nodename = "_587" />
+    </dot>
+    <dot name = "_595" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_596" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_597" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_598" />
+    </dot>
+    <combine3 name = "_598" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_593" />
+        <input name = "in2" type = "float" nodename = "_594" />
+        <input name = "in3" type = "float" nodename = "_595" />
+    </combine3>
+    <dot name = "_599" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_600" />
+    </dot>
+    <combine2 name = "_600" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_593" />
+        <input name = "in2" type = "float" nodename = "_594" />
+    </combine2>
+    <dot name = "_601" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_602" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_602" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_603" />
+        <input name = "texcoord" type = "vector2" nodename = "_604" />
+        <input name = "lod" type = "float" nodename = "_610" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_603" type = "filename">
+        <input name = "in" type = "filename" nodename = "_584" />
+    </dot>
+    <add name = "_604" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_605" />
+        <input name = "in2" type = "vector2" nodename = "_609" />
+    </add>
+    <multiply name = "_605" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_606" />
+        <input name = "in2" type = "vector2" nodename = "_607" />
+    </multiply>
+    <dot name = "_606" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_619" />
+    </dot>
+    <swizzle name = "_607" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_608" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_608" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_609" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_608" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_610" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_611" type = "float">
+        <input name = "in" type = "float" nodename = "_612" />
+    </dot>
+    <swizzle name = "_612" type = "float">
+        <input name = "in" type = "vector4" nodename = "_602" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_613" type = "float">
+        <input name = "in" type = "float" nodename = "_614" />
+    </dot>
+    <swizzle name = "_614" type = "float">
+        <input name = "in" type = "vector4" nodename = "_602" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_615" type = "float">
+        <input name = "in" type = "float" nodename = "_616" />
+    </dot>
+    <swizzle name = "_616" type = "float">
+        <input name = "in" type = "vector4" nodename = "_602" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_617" type = "float">
+        <input name = "in" type = "float" nodename = "_618" />
+    </dot>
+    <swizzle name = "_618" type = "float">
+        <input name = "in" type = "vector4" nodename = "_602" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_619" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_582" />
+        <input name = "in2" type = "vector2" nodename = "_620" />
+    </add>
+    <multiply name = "_620" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_636" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_621" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_622" />
+    </dot>
+    <combine4 name = "_622" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_623" />
+        <input name = "in2" type = "float" nodename = "_624" />
+        <input name = "in3" type = "float" nodename = "_625" />
+        <input name = "in4" type = "float" nodename = "_626" />
+    </combine4>
+    <dot name = "_623" type = "float">
+        <input name = "in" type = "float" nodename = "_611" />
+    </dot>
+    <dot name = "_624" type = "float">
+        <input name = "in" type = "float" nodename = "_613" />
+    </dot>
+    <dot name = "_625" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_626" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_627" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_628" />
+    </dot>
+    <combine3 name = "_628" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_623" />
+        <input name = "in2" type = "float" nodename = "_624" />
+        <input name = "in3" type = "float" nodename = "_625" />
+    </combine3>
+    <dot name = "_629" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_630" />
+    </dot>
+    <combine2 name = "_630" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_623" />
+        <input name = "in2" type = "float" nodename = "_624" />
+    </combine2>
+    <constant name = "_631" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_526" />
+    </constant>
+    <swizzle name = "_632" type = "float">
+        <input name = "in" type = "vector3" nodename = "_631" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_633" type = "float">
+        <input name = "in" type = "vector3" nodename = "_631" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_634" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_632" />
+    </divide>
+    <divide name = "_635" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_633" />
+    </divide>
+    <combine2 name = "_636" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_634" />
+        <input name = "in2" type = "float" nodename = "_635" />
+    </combine2>
+    <multiply name = "_637" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_654" />
+        <input name = "in2" type = "vector2" nodename = "_691" />
+    </multiply>
+    <constant name = "_638" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_693" />
+    </constant>
+    <constant name = "_639" type = "filename">
+        <input name = "value" type = "filename" nodename = "_692" />
+    </constant>
+    <dot name = "_640" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_638" />
+    </dot>
+    <extract name = "_641" type = "float">
+        <input name = "in" type = "vector3" nodename = "_640" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_642" type = "float">
+        <input name = "in" type = "vector3" nodename = "_640" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_643" type = "float">
+        <input name = "in" type = "vector3" nodename = "_640" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_644" type = "float">
+        <input name = "in1" type = "float" nodename = "_641" />
+        <input name = "in2" type = "float" nodename = "_645" />
+    </add>
+    <constant name = "_645" type = "float">
+        <input name = "value" type = "float" nodename = "_695" />
+    </constant>
+    <dot name = "_646" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_647" />
+    </dot>
+    <combine4 name = "_647" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_648" />
+        <input name = "in2" type = "float" nodename = "_649" />
+        <input name = "in3" type = "float" nodename = "_650" />
+        <input name = "in4" type = "float" nodename = "_651" />
+    </combine4>
+    <dot name = "_648" type = "float">
+        <input name = "in" type = "float" nodename = "_644" />
+    </dot>
+    <dot name = "_649" type = "float">
+        <input name = "in" type = "float" nodename = "_642" />
+    </dot>
+    <dot name = "_650" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_651" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_652" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_653" />
+    </dot>
+    <combine3 name = "_653" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_648" />
+        <input name = "in2" type = "float" nodename = "_649" />
+        <input name = "in3" type = "float" nodename = "_650" />
+    </combine3>
+    <dot name = "_654" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_655" />
+    </dot>
+    <combine2 name = "_655" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_648" />
+        <input name = "in2" type = "float" nodename = "_649" />
+    </combine2>
+    <dot name = "_656" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_657" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_657" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_658" />
+        <input name = "texcoord" type = "vector2" nodename = "_659" />
+        <input name = "lod" type = "float" nodename = "_665" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_658" type = "filename">
+        <input name = "in" type = "filename" nodename = "_639" />
+    </dot>
+    <add name = "_659" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_660" />
+        <input name = "in2" type = "vector2" nodename = "_664" />
+    </add>
+    <multiply name = "_660" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_661" />
+        <input name = "in2" type = "vector2" nodename = "_662" />
+    </multiply>
+    <dot name = "_661" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_674" />
+    </dot>
+    <swizzle name = "_662" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_663" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_663" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_664" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_663" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_665" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_666" type = "float">
+        <input name = "in" type = "float" nodename = "_667" />
+    </dot>
+    <swizzle name = "_667" type = "float">
+        <input name = "in" type = "vector4" nodename = "_657" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_668" type = "float">
+        <input name = "in" type = "float" nodename = "_669" />
+    </dot>
+    <swizzle name = "_669" type = "float">
+        <input name = "in" type = "vector4" nodename = "_657" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_670" type = "float">
+        <input name = "in" type = "float" nodename = "_671" />
+    </dot>
+    <swizzle name = "_671" type = "float">
+        <input name = "in" type = "vector4" nodename = "_657" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_672" type = "float">
+        <input name = "in" type = "float" nodename = "_673" />
+    </dot>
+    <swizzle name = "_673" type = "float">
+        <input name = "in" type = "vector4" nodename = "_657" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_674" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_637" />
+        <input name = "in2" type = "vector2" nodename = "_675" />
+    </add>
+    <multiply name = "_675" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_691" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_676" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_677" />
+    </dot>
+    <combine4 name = "_677" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_678" />
+        <input name = "in2" type = "float" nodename = "_679" />
+        <input name = "in3" type = "float" nodename = "_680" />
+        <input name = "in4" type = "float" nodename = "_681" />
+    </combine4>
+    <dot name = "_678" type = "float">
+        <input name = "in" type = "float" nodename = "_666" />
+    </dot>
+    <dot name = "_679" type = "float">
+        <input name = "in" type = "float" nodename = "_668" />
+    </dot>
+    <dot name = "_680" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_681" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_682" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_683" />
+    </dot>
+    <combine3 name = "_683" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_678" />
+        <input name = "in2" type = "float" nodename = "_679" />
+        <input name = "in3" type = "float" nodename = "_680" />
+    </combine3>
+    <dot name = "_684" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_685" />
+    </dot>
+    <combine2 name = "_685" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_678" />
+        <input name = "in2" type = "float" nodename = "_679" />
+    </combine2>
+    <constant name = "_686" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_526" />
+    </constant>
+    <swizzle name = "_687" type = "float">
+        <input name = "in" type = "vector3" nodename = "_686" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_688" type = "float">
+        <input name = "in" type = "vector3" nodename = "_686" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_689" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_687" />
+    </divide>
+    <divide name = "_690" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_688" />
+    </divide>
+    <combine2 name = "_691" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_689" />
+        <input name = "in2" type = "float" nodename = "_690" />
+    </combine2>
+    <constant name = "_692" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <constant name = "_693" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_694" type = "float">
+        <input name = "value" type = "float" value = "6" />
+    </constant>
+    <add name = "_695" type = "float">
+        <input name = "in1" type = "float" nodename = "_694" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <add name = "_696" type = "float">
+        <input name = "in1" type = "float" nodename = "_694" />
+        <input name = "in2" type = "float" value = "2" />
+    </add>
+    <dot name = "_697" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_698" />
+    </dot>
+    <combine4 name = "_698" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_699" />
+        <input name = "in2" type = "float" nodename = "_700" />
+        <input name = "in3" type = "float" nodename = "_701" />
+        <input name = "in4" type = "float" nodename = "_702" />
+    </combine4>
+    <dot name = "_699" type = "float">
+        <input name = "in" type = "float" nodename = "_737" />
+    </dot>
+    <dot name = "_700" type = "float">
+        <input name = "in" type = "float" nodename = "_847" />
+    </dot>
+    <dot name = "_701" type = "float">
+        <input name = "in" type = "float" nodename = "_792" />
+    </dot>
+    <dot name = "_702" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_703" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_704" />
+    </dot>
+    <combine3 name = "_704" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_699" />
+        <input name = "in2" type = "float" nodename = "_700" />
+        <input name = "in3" type = "float" nodename = "_701" />
+    </combine3>
+    <dot name = "_705" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_706" />
+    </dot>
+    <combine2 name = "_706" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_699" />
+        <input name = "in2" type = "float" nodename = "_700" />
+    </combine2>
+    <constant name = "_707" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <multiply name = "_708" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_725" />
+        <input name = "in2" type = "vector2" nodename = "_762" />
+    </multiply>
+    <constant name = "_709" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_874" />
+    </constant>
+    <constant name = "_710" type = "filename">
+        <input name = "value" type = "filename" nodename = "_873" />
+    </constant>
+    <dot name = "_711" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_709" />
+    </dot>
+    <extract name = "_712" type = "float">
+        <input name = "in" type = "vector3" nodename = "_711" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_713" type = "float">
+        <input name = "in" type = "vector3" nodename = "_711" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_714" type = "float">
+        <input name = "in" type = "vector3" nodename = "_711" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_715" type = "float">
+        <input name = "in1" type = "float" nodename = "_712" />
+        <input name = "in2" type = "float" nodename = "_716" />
+    </add>
+    <constant name = "_716" type = "float">
+        <input name = "value" type = "float" nodename = "_875" />
+    </constant>
+    <dot name = "_717" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_718" />
+    </dot>
+    <combine4 name = "_718" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_719" />
+        <input name = "in2" type = "float" nodename = "_720" />
+        <input name = "in3" type = "float" nodename = "_721" />
+        <input name = "in4" type = "float" nodename = "_722" />
+    </combine4>
+    <dot name = "_719" type = "float">
+        <input name = "in" type = "float" nodename = "_715" />
+    </dot>
+    <dot name = "_720" type = "float">
+        <input name = "in" type = "float" nodename = "_713" />
+    </dot>
+    <dot name = "_721" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_722" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_723" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_724" />
+    </dot>
+    <combine3 name = "_724" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_719" />
+        <input name = "in2" type = "float" nodename = "_720" />
+        <input name = "in3" type = "float" nodename = "_721" />
+    </combine3>
+    <dot name = "_725" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_726" />
+    </dot>
+    <combine2 name = "_726" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_719" />
+        <input name = "in2" type = "float" nodename = "_720" />
+    </combine2>
+    <dot name = "_727" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_728" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_728" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_729" />
+        <input name = "texcoord" type = "vector2" nodename = "_730" />
+        <input name = "lod" type = "float" nodename = "_736" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_729" type = "filename">
+        <input name = "in" type = "filename" nodename = "_710" />
+    </dot>
+    <add name = "_730" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_731" />
+        <input name = "in2" type = "vector2" nodename = "_735" />
+    </add>
+    <multiply name = "_731" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_732" />
+        <input name = "in2" type = "vector2" nodename = "_733" />
+    </multiply>
+    <dot name = "_732" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_745" />
+    </dot>
+    <swizzle name = "_733" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_734" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_734" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_735" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_734" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_736" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_737" type = "float">
+        <input name = "in" type = "float" nodename = "_738" />
+    </dot>
+    <swizzle name = "_738" type = "float">
+        <input name = "in" type = "vector4" nodename = "_728" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_739" type = "float">
+        <input name = "in" type = "float" nodename = "_740" />
+    </dot>
+    <swizzle name = "_740" type = "float">
+        <input name = "in" type = "vector4" nodename = "_728" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_741" type = "float">
+        <input name = "in" type = "float" nodename = "_742" />
+    </dot>
+    <swizzle name = "_742" type = "float">
+        <input name = "in" type = "vector4" nodename = "_728" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_743" type = "float">
+        <input name = "in" type = "float" nodename = "_744" />
+    </dot>
+    <swizzle name = "_744" type = "float">
+        <input name = "in" type = "vector4" nodename = "_728" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_745" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_708" />
+        <input name = "in2" type = "vector2" nodename = "_746" />
+    </add>
+    <multiply name = "_746" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_762" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_747" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_748" />
+    </dot>
+    <combine4 name = "_748" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_749" />
+        <input name = "in2" type = "float" nodename = "_750" />
+        <input name = "in3" type = "float" nodename = "_751" />
+        <input name = "in4" type = "float" nodename = "_752" />
+    </combine4>
+    <dot name = "_749" type = "float">
+        <input name = "in" type = "float" nodename = "_737" />
+    </dot>
+    <dot name = "_750" type = "float">
+        <input name = "in" type = "float" nodename = "_739" />
+    </dot>
+    <dot name = "_751" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_752" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_753" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_754" />
+    </dot>
+    <combine3 name = "_754" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_749" />
+        <input name = "in2" type = "float" nodename = "_750" />
+        <input name = "in3" type = "float" nodename = "_751" />
+    </combine3>
+    <dot name = "_755" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_756" />
+    </dot>
+    <combine2 name = "_756" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_749" />
+        <input name = "in2" type = "float" nodename = "_750" />
+    </combine2>
+    <constant name = "_757" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_707" />
+    </constant>
+    <swizzle name = "_758" type = "float">
+        <input name = "in" type = "vector3" nodename = "_757" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_759" type = "float">
+        <input name = "in" type = "vector3" nodename = "_757" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_760" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_758" />
+    </divide>
+    <divide name = "_761" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_759" />
+    </divide>
+    <combine2 name = "_762" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_760" />
+        <input name = "in2" type = "float" nodename = "_761" />
+    </combine2>
+    <multiply name = "_763" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_780" />
+        <input name = "in2" type = "vector2" nodename = "_817" />
+    </multiply>
+    <constant name = "_764" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_874" />
+    </constant>
+    <constant name = "_765" type = "filename">
+        <input name = "value" type = "filename" nodename = "_873" />
+    </constant>
+    <dot name = "_766" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_764" />
+    </dot>
+    <extract name = "_767" type = "float">
+        <input name = "in" type = "vector3" nodename = "_766" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_768" type = "float">
+        <input name = "in" type = "vector3" nodename = "_766" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_769" type = "float">
+        <input name = "in" type = "vector3" nodename = "_766" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_770" type = "float">
+        <input name = "in1" type = "float" nodename = "_767" />
+        <input name = "in2" type = "float" nodename = "_771" />
+    </add>
+    <constant name = "_771" type = "float">
+        <input name = "value" type = "float" nodename = "_877" />
+    </constant>
+    <dot name = "_772" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_773" />
+    </dot>
+    <combine4 name = "_773" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_774" />
+        <input name = "in2" type = "float" nodename = "_775" />
+        <input name = "in3" type = "float" nodename = "_776" />
+        <input name = "in4" type = "float" nodename = "_777" />
+    </combine4>
+    <dot name = "_774" type = "float">
+        <input name = "in" type = "float" nodename = "_770" />
+    </dot>
+    <dot name = "_775" type = "float">
+        <input name = "in" type = "float" nodename = "_768" />
+    </dot>
+    <dot name = "_776" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_777" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_778" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_779" />
+    </dot>
+    <combine3 name = "_779" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_774" />
+        <input name = "in2" type = "float" nodename = "_775" />
+        <input name = "in3" type = "float" nodename = "_776" />
+    </combine3>
+    <dot name = "_780" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_781" />
+    </dot>
+    <combine2 name = "_781" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_774" />
+        <input name = "in2" type = "float" nodename = "_775" />
+    </combine2>
+    <dot name = "_782" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_783" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_783" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_784" />
+        <input name = "texcoord" type = "vector2" nodename = "_785" />
+        <input name = "lod" type = "float" nodename = "_791" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_784" type = "filename">
+        <input name = "in" type = "filename" nodename = "_765" />
+    </dot>
+    <add name = "_785" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_786" />
+        <input name = "in2" type = "vector2" nodename = "_790" />
+    </add>
+    <multiply name = "_786" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_787" />
+        <input name = "in2" type = "vector2" nodename = "_788" />
+    </multiply>
+    <dot name = "_787" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_800" />
+    </dot>
+    <swizzle name = "_788" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_789" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_789" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_790" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_789" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_791" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_792" type = "float">
+        <input name = "in" type = "float" nodename = "_793" />
+    </dot>
+    <swizzle name = "_793" type = "float">
+        <input name = "in" type = "vector4" nodename = "_783" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_794" type = "float">
+        <input name = "in" type = "float" nodename = "_795" />
+    </dot>
+    <swizzle name = "_795" type = "float">
+        <input name = "in" type = "vector4" nodename = "_783" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_796" type = "float">
+        <input name = "in" type = "float" nodename = "_797" />
+    </dot>
+    <swizzle name = "_797" type = "float">
+        <input name = "in" type = "vector4" nodename = "_783" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_798" type = "float">
+        <input name = "in" type = "float" nodename = "_799" />
+    </dot>
+    <swizzle name = "_799" type = "float">
+        <input name = "in" type = "vector4" nodename = "_783" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_800" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_763" />
+        <input name = "in2" type = "vector2" nodename = "_801" />
+    </add>
+    <multiply name = "_801" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_817" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_802" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_803" />
+    </dot>
+    <combine4 name = "_803" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_804" />
+        <input name = "in2" type = "float" nodename = "_805" />
+        <input name = "in3" type = "float" nodename = "_806" />
+        <input name = "in4" type = "float" nodename = "_807" />
+    </combine4>
+    <dot name = "_804" type = "float">
+        <input name = "in" type = "float" nodename = "_792" />
+    </dot>
+    <dot name = "_805" type = "float">
+        <input name = "in" type = "float" nodename = "_794" />
+    </dot>
+    <dot name = "_806" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_807" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_808" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_809" />
+    </dot>
+    <combine3 name = "_809" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_804" />
+        <input name = "in2" type = "float" nodename = "_805" />
+        <input name = "in3" type = "float" nodename = "_806" />
+    </combine3>
+    <dot name = "_810" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_811" />
+    </dot>
+    <combine2 name = "_811" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_804" />
+        <input name = "in2" type = "float" nodename = "_805" />
+    </combine2>
+    <constant name = "_812" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_707" />
+    </constant>
+    <swizzle name = "_813" type = "float">
+        <input name = "in" type = "vector3" nodename = "_812" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_814" type = "float">
+        <input name = "in" type = "vector3" nodename = "_812" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_815" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_813" />
+    </divide>
+    <divide name = "_816" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_814" />
+    </divide>
+    <combine2 name = "_817" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_815" />
+        <input name = "in2" type = "float" nodename = "_816" />
+    </combine2>
+    <multiply name = "_818" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_835" />
+        <input name = "in2" type = "vector2" nodename = "_872" />
+    </multiply>
+    <constant name = "_819" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_874" />
+    </constant>
+    <constant name = "_820" type = "filename">
+        <input name = "value" type = "filename" nodename = "_873" />
+    </constant>
+    <dot name = "_821" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_819" />
+    </dot>
+    <extract name = "_822" type = "float">
+        <input name = "in" type = "vector3" nodename = "_821" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_823" type = "float">
+        <input name = "in" type = "vector3" nodename = "_821" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_824" type = "float">
+        <input name = "in" type = "vector3" nodename = "_821" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_825" type = "float">
+        <input name = "in1" type = "float" nodename = "_822" />
+        <input name = "in2" type = "float" nodename = "_826" />
+    </add>
+    <constant name = "_826" type = "float">
+        <input name = "value" type = "float" nodename = "_876" />
+    </constant>
+    <dot name = "_827" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_828" />
+    </dot>
+    <combine4 name = "_828" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_829" />
+        <input name = "in2" type = "float" nodename = "_830" />
+        <input name = "in3" type = "float" nodename = "_831" />
+        <input name = "in4" type = "float" nodename = "_832" />
+    </combine4>
+    <dot name = "_829" type = "float">
+        <input name = "in" type = "float" nodename = "_825" />
+    </dot>
+    <dot name = "_830" type = "float">
+        <input name = "in" type = "float" nodename = "_823" />
+    </dot>
+    <dot name = "_831" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_832" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_833" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_834" />
+    </dot>
+    <combine3 name = "_834" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_829" />
+        <input name = "in2" type = "float" nodename = "_830" />
+        <input name = "in3" type = "float" nodename = "_831" />
+    </combine3>
+    <dot name = "_835" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_836" />
+    </dot>
+    <combine2 name = "_836" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_829" />
+        <input name = "in2" type = "float" nodename = "_830" />
+    </combine2>
+    <dot name = "_837" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_838" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_838" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_839" />
+        <input name = "texcoord" type = "vector2" nodename = "_840" />
+        <input name = "lod" type = "float" nodename = "_846" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_839" type = "filename">
+        <input name = "in" type = "filename" nodename = "_820" />
+    </dot>
+    <add name = "_840" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_841" />
+        <input name = "in2" type = "vector2" nodename = "_845" />
+    </add>
+    <multiply name = "_841" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_842" />
+        <input name = "in2" type = "vector2" nodename = "_843" />
+    </multiply>
+    <dot name = "_842" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_855" />
+    </dot>
+    <swizzle name = "_843" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_844" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_844" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_845" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_844" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_846" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_847" type = "float">
+        <input name = "in" type = "float" nodename = "_848" />
+    </dot>
+    <swizzle name = "_848" type = "float">
+        <input name = "in" type = "vector4" nodename = "_838" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_849" type = "float">
+        <input name = "in" type = "float" nodename = "_850" />
+    </dot>
+    <swizzle name = "_850" type = "float">
+        <input name = "in" type = "vector4" nodename = "_838" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_851" type = "float">
+        <input name = "in" type = "float" nodename = "_852" />
+    </dot>
+    <swizzle name = "_852" type = "float">
+        <input name = "in" type = "vector4" nodename = "_838" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_853" type = "float">
+        <input name = "in" type = "float" nodename = "_854" />
+    </dot>
+    <swizzle name = "_854" type = "float">
+        <input name = "in" type = "vector4" nodename = "_838" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_855" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_818" />
+        <input name = "in2" type = "vector2" nodename = "_856" />
+    </add>
+    <multiply name = "_856" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_872" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_857" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_858" />
+    </dot>
+    <combine4 name = "_858" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_859" />
+        <input name = "in2" type = "float" nodename = "_860" />
+        <input name = "in3" type = "float" nodename = "_861" />
+        <input name = "in4" type = "float" nodename = "_862" />
+    </combine4>
+    <dot name = "_859" type = "float">
+        <input name = "in" type = "float" nodename = "_847" />
+    </dot>
+    <dot name = "_860" type = "float">
+        <input name = "in" type = "float" nodename = "_849" />
+    </dot>
+    <dot name = "_861" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_862" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_863" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_864" />
+    </dot>
+    <combine3 name = "_864" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_859" />
+        <input name = "in2" type = "float" nodename = "_860" />
+        <input name = "in3" type = "float" nodename = "_861" />
+    </combine3>
+    <dot name = "_865" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_866" />
+    </dot>
+    <combine2 name = "_866" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_859" />
+        <input name = "in2" type = "float" nodename = "_860" />
+    </combine2>
+    <constant name = "_867" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_707" />
+    </constant>
+    <swizzle name = "_868" type = "float">
+        <input name = "in" type = "vector3" nodename = "_867" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_869" type = "float">
+        <input name = "in" type = "vector3" nodename = "_867" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_870" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_868" />
+    </divide>
+    <divide name = "_871" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_869" />
+    </divide>
+    <combine2 name = "_872" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_870" />
+        <input name = "in2" type = "float" nodename = "_871" />
+    </combine2>
+    <constant name = "_873" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <constant name = "_874" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_875" type = "float">
+        <input name = "value" type = "float" value = "9" />
+    </constant>
+    <add name = "_876" type = "float">
+        <input name = "in1" type = "float" nodename = "_875" />
+        <input name = "in2" type = "float" value = "1" />
+    </add>
+    <add name = "_877" type = "float">
+        <input name = "in1" type = "float" nodename = "_875" />
+        <input name = "in2" type = "float" value = "2" />
+    </add>
+    <multiply name = "_878" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_895" />
+        <input name = "in2" type = "vector2" nodename = "_932" />
+    </multiply>
+    <constant name = "_879" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_115" />
+    </constant>
+    <constant name = "_880" type = "filename">
+        <input name = "value" type = "filename" nodename = "_975" />
+    </constant>
+    <dot name = "_881" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_879" />
+    </dot>
+    <extract name = "_882" type = "float">
+        <input name = "in" type = "vector3" nodename = "_881" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_883" type = "float">
+        <input name = "in" type = "vector3" nodename = "_881" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_884" type = "float">
+        <input name = "in" type = "vector3" nodename = "_881" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <add name = "_885" type = "float">
+        <input name = "in1" type = "float" nodename = "_882" />
+        <input name = "in2" type = "float" nodename = "_886" />
+    </add>
+    <constant name = "_886" type = "float">
+        <input name = "value" type = "float" value = "12" />
+    </constant>
+    <dot name = "_887" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_888" />
+    </dot>
+    <combine4 name = "_888" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_889" />
+        <input name = "in2" type = "float" nodename = "_890" />
+        <input name = "in3" type = "float" nodename = "_891" />
+        <input name = "in4" type = "float" nodename = "_892" />
+    </combine4>
+    <dot name = "_889" type = "float">
+        <input name = "in" type = "float" nodename = "_885" />
+    </dot>
+    <dot name = "_890" type = "float">
+        <input name = "in" type = "float" nodename = "_883" />
+    </dot>
+    <dot name = "_891" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_892" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_893" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_894" />
+    </dot>
+    <combine3 name = "_894" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_889" />
+        <input name = "in2" type = "float" nodename = "_890" />
+        <input name = "in3" type = "float" nodename = "_891" />
+    </combine3>
+    <dot name = "_895" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_896" />
+    </dot>
+    <combine2 name = "_896" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_889" />
+        <input name = "in2" type = "float" nodename = "_890" />
+    </combine2>
+    <dot name = "_897" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_898" />
+    </dot>
+    <RealityKitTexture2DLOD name = "_898" type = "vector4">
+        <input name = "file" type = "filename" nodename = "_899" />
+        <input name = "texcoord" type = "vector2" nodename = "_900" />
+        <input name = "lod" type = "float" nodename = "_906" />
+        <input name = "min_filter" type = "string" value = "nearest" />
+        <input name = "mag_filter" type = "string" value = "nearest" />
+        <input name = "mip_filter" type = "string" value = "nearest" />
+        <input name = "u_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "v_wrap_mode" type = "string" value = "clamp_to_edge" />
+        <input name = "max_anisotropy" type = "integer" value = "1" />
+    </RealityKitTexture2DLOD>
+    <dot name = "_899" type = "filename">
+        <input name = "in" type = "filename" nodename = "_880" />
+    </dot>
+    <add name = "_900" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_901" />
+        <input name = "in2" type = "vector2" nodename = "_905" />
+    </add>
+    <multiply name = "_901" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_902" />
+        <input name = "in2" type = "vector2" nodename = "_903" />
+    </multiply>
+    <dot name = "_902" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_915" />
+    </dot>
+    <swizzle name = "_903" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_904" />
+        <input name = "channels" type = "string" value = "xy" />
+    </swizzle>
+    <constant name = "_904" type = "vector4">
+        <input name = "value" type = "vector4" value = "1,1,0,0" />
+    </constant>
+    <swizzle name = "_905" type = "vector2">
+        <input name = "in" type = "vector4" nodename = "_904" />
+        <input name = "channels" type = "string" value = "zw" />
+    </swizzle>
+    <dot name = "_906" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_907" type = "float">
+        <input name = "in" type = "float" nodename = "_908" />
+    </dot>
+    <swizzle name = "_908" type = "float">
+        <input name = "in" type = "vector4" nodename = "_898" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <dot name = "_909" type = "float">
+        <input name = "in" type = "float" nodename = "_910" />
+    </dot>
+    <swizzle name = "_910" type = "float">
+        <input name = "in" type = "vector4" nodename = "_898" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <dot name = "_911" type = "float">
+        <input name = "in" type = "float" nodename = "_912" />
+    </dot>
+    <swizzle name = "_912" type = "float">
+        <input name = "in" type = "vector4" nodename = "_898" />
+        <input name = "channels" type = "string" value = "z" />
+    </swizzle>
+    <dot name = "_913" type = "float">
+        <input name = "in" type = "float" nodename = "_914" />
+    </dot>
+    <swizzle name = "_914" type = "float">
+        <input name = "in" type = "vector4" nodename = "_898" />
+        <input name = "channels" type = "string" value = "w" />
+    </swizzle>
+    <add name = "_915" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_878" />
+        <input name = "in2" type = "vector2" nodename = "_916" />
+    </add>
+    <multiply name = "_916" type = "vector2">
+        <input name = "in1" type = "vector2" nodename = "_932" />
+        <input name = "in2" type = "vector2" value = "0.5,0.5" />
+    </multiply>
+    <dot name = "_917" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_918" />
+    </dot>
+    <combine4 name = "_918" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_919" />
+        <input name = "in2" type = "float" nodename = "_920" />
+        <input name = "in3" type = "float" nodename = "_921" />
+        <input name = "in4" type = "float" nodename = "_922" />
+    </combine4>
+    <dot name = "_919" type = "float">
+        <input name = "in" type = "float" nodename = "_907" />
+    </dot>
+    <dot name = "_920" type = "float">
+        <input name = "in" type = "float" nodename = "_909" />
+    </dot>
+    <dot name = "_921" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_922" type = "float">
+        <input name = "in" type = "float" value = "0" />
+    </dot>
+    <dot name = "_923" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_924" />
+    </dot>
+    <combine3 name = "_924" type = "vector3">
+        <input name = "in1" type = "float" nodename = "_919" />
+        <input name = "in2" type = "float" nodename = "_920" />
+        <input name = "in3" type = "float" nodename = "_921" />
+    </combine3>
+    <dot name = "_925" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_926" />
+    </dot>
+    <combine2 name = "_926" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_919" />
+        <input name = "in2" type = "float" nodename = "_920" />
+    </combine2>
+    <constant name = "_927" type = "vector3">
+        <input name = "value" type = "vector3" nodename = "_127" />
+    </constant>
+    <swizzle name = "_928" type = "float">
+        <input name = "in" type = "vector3" nodename = "_927" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_929" type = "float">
+        <input name = "in" type = "vector3" nodename = "_927" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <divide name = "_930" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_928" />
+    </divide>
+    <divide name = "_931" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_929" />
+    </divide>
+    <combine2 name = "_932" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_930" />
+        <input name = "in2" type = "float" nodename = "_931" />
+    </combine2>
+    <floor name = "_933" type = "float">
+        <input name = "in" type = "float" nodename = "_934" />
+    </floor>
+    <add name = "_934" type = "float">
+        <input name = "in1" type = "float" nodename = "_103" />
+        <input name = "in2" type = "float" value = "0.01" />
+    </add>
+    <subtract name = "_935" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_286" />
+        <input name = "in2" type = "vector3" nodename = "_522" />
+    </subtract>
+    <dotproduct name = "_936" type = "float">
+        <input name = "in1" type = "vector3" nodename = "_935" />
+        <input name = "in2" type = "vector3" nodename = "_935" />
+    </dotproduct>
+    <ifgreater name = "_937" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_940" />
+        <input name = "in2" type = "vector3" nodename = "_935" />
+        <input name = "value1" type = "float" nodename = "_938" />
+    </ifgreater>
+    <absval name = "_938" type = "float">
+        <input name = "in" type = "float" nodename = "_939" />
+    </absval>
+    <ifgreater name = "_939" type = "float">
+        <input name = "value1" type = "float" nodename = "_936" />
+        <input name = "value2" type = "float" value = "1E-06" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifgreater>
+    <subtract name = "_940" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_703" />
+        <input name = "in2" type = "vector3" nodename = "_286" />
+    </subtract>
+    <dotproduct name = "_941" type = "float">
+        <input name = "in1" type = "vector3" nodename = "_940" />
+        <input name = "in2" type = "vector3" nodename = "_940" />
+    </dotproduct>
+    <ifgreater name = "_942" type = "float">
+        <input name = "value1" type = "float" nodename = "_943" />
+        <input name = "value2" type = "float" value = "1E-06" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreater>
+    <ifgreater name = "_943" type = "float">
+        <input name = "in1" type = "float" nodename = "_941" />
+        <input name = "in2" type = "float" nodename = "_936" />
+        <input name = "value1" type = "float" nodename = "_944" />
+    </ifgreater>
+    <absval name = "_944" type = "float">
+        <input name = "in" type = "float" nodename = "_939" />
+    </absval>
+    <ifgreater name = "_945" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_947" />
+        <input name = "in2" type = "vector3" nodename = "_937" />
+        <input name = "value1" type = "float" nodename = "_946" />
+    </ifgreater>
+    <absval name = "_946" type = "float">
+        <input name = "in" type = "float" nodename = "_942" />
+    </absval>
+    <normalize name = "_947" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_937" />
+    </normalize>
+    <modulo name = "_948" type = "float">
+        <input name = "in1" type = "float" nodename = "_50" />
+        <input name = "in2" type = "float" value = "2" />
+    </modulo>
+    <ifgreater name = "_949" type = "float">
+        <input name = "value1" type = "float" nodename = "_948" />
+        <input name = "value2" type = "float" value = "0.9" />
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0" />
+    </ifgreater>
+    <ifgreater name = "_950" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "-1" />
+        <input name = "value1" type = "float" nodename = "_951" />
+    </ifgreater>
+    <absval name = "_951" type = "float">
+        <input name = "in" type = "float" nodename = "_949" />
+    </absval>
+    <dot name = "_952" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "_953" />
+    </dot>
+    <dot name = "_953" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "_954" />
+    </dot>
+    <multiply name = "_954" type = "matrix44">
+        <input name = "in1" type = "matrix44" nodename = "_955" />
+        <input name = "in2" type = "matrix44" nodename = "_956" />
+    </multiply>
+    <realitykit_geometry_modifier_model_to_view name = "_955" type = "matrix44">
+    </realitykit_geometry_modifier_model_to_view>
+    <multiply name = "_956" type = "matrix44">
+        <input name = "in1" type = "matrix44" nodename = "_957" />
+        <input name = "in2" type = "matrix44" value = "1,0,0,0,0,1,0,0,0,0,-1,0,0,0,0,1" />
+    </multiply>
+    <realitykit_geometry_modifier_world_to_model name = "_957" type = "matrix44">
+    </realitykit_geometry_modifier_world_to_model>
+    <transformmatrix name = "_958" type = "vector4">
+        <input name = "in" type = "vector4" value = "1,0,0,0" />
+        <input name = "mat" type = "matrix44" nodename = "_959" />
+    </transformmatrix>
+    <transpose name = "_959" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "_960" />
+    </transpose>
+    <dot name = "_960" type = "matrix44">
+        <input name = "in" type = "matrix44" nodename = "_952" />
+    </dot>
+    <transformmatrix name = "_961" type = "vector4">
+        <input name = "in" type = "vector4" value = "0,1,0,0" />
+        <input name = "mat" type = "matrix44" nodename = "_959" />
+    </transformmatrix>
+    <transformmatrix name = "_962" type = "vector4">
+        <input name = "in" type = "vector4" value = "0,0,1,0" />
+        <input name = "mat" type = "matrix44" nodename = "_959" />
+    </transformmatrix>
+    <transformmatrix name = "_963" type = "vector4">
+        <input name = "in" type = "vector4" value = "0,0,0,1" />
+        <input name = "mat" type = "matrix44" nodename = "_959" />
+    </transformmatrix>
+    <swizzle name = "_964" type = "vector3">
+        <input name = "in" type = "vector4" nodename = "_962" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <crossproduct name = "_965" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_945" />
+        <input name = "in2" type = "vector3" nodename = "_964" />
+    </crossproduct>
+    <normalize name = "_966" type = "vector3">
+        <input name = "in" type = "vector3" nodename = "_965" />
+    </normalize>
+    <multiply name = "_967" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_966" />
+        <input name = "in2" type = "vector3" nodename = "_984" />
+    </multiply>
+    <ifgreater name = "_968" type = "float">
+        <input name = "in1" type = "float" value = "-0.5" />
+        <input name = "in2" type = "float" value = "0.5" />
+        <input name = "value1" type = "float" nodename = "_969" />
+    </ifgreater>
+    <absval name = "_969" type = "float">
+        <input name = "in" type = "float" nodename = "_949" />
+    </absval>
+    <combine2 name = "_970" type = "vector2">
+        <input name = "in1" type = "float" nodename = "_977" />
+        <input name = "in2" type = "float" nodename = "_982" />
+    </combine2>
+    <multiply name = "_971" type = "float">
+        <input name = "in1" type = "float" nodename = "_490" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </multiply>
+    <multiply name = "_972" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_967" />
+        <input name = "in2" type = "vector3" nodename = "_985" />
+    </multiply>
+    <add name = "_973" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_286" />
+        <input name = "in2" type = "vector3" nodename = "_972" />
+    </add>
+    <constant name = "_974" type = "filename">
+        <input name = "value" type = "filename" nodename = "_TrailsIndexDataTexture" />
+    </constant>
+    <constant name = "_975" type = "filename">
+        <input name = "value" type = "filename" nodename = "_TrailsVertexDataTexture" />
+    </constant>
+    <constant name = "_976" type = "vector2">
+        <input name = "value" type = "vector2" nodename = "_TrailTextureScale" />
+    </constant>
+    <multiply name = "_977" type = "float">
+        <input name = "in1" type = "float" nodename = "_907" />
+        <input name = "in2" type = "float" nodename = "_979" />
+    </multiply>
+    <dot name = "_978" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_976" />
+    </dot>
+    <extract name = "_979" type = "float">
+        <input name = "in" type = "vector2" nodename = "_978" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_980" type = "float">
+        <input name = "in" type = "vector2" nodename = "_978" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <multiply name = "_981" type = "float">
+        <input name = "in1" type = "float" nodename = "_968" />
+        <input name = "in2" type = "float" nodename = "_980" />
+    </multiply>
+    <add name = "_982" type = "float">
+        <input name = "in1" type = "float" nodename = "_981" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </add>
+    <convert name = "_983" type = "float">
+        <input name = "in" type = "integer" nodename = "_98" />
+    </convert>
+    <swizzle name = "_984" type = "vector3">
+        <input name = "in" type = "float" nodename = "_950" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <swizzle name = "_985" type = "vector3">
+        <input name = "in" type = "float" nodename = "_971" />
+        <input name = "channels" type = "string" value = "xxx" />
+    </swizzle>
+    <combine3 name = "_986" type = "vector3">
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "0" />
+        <input name = "in3" type = "float" value = "1" />
+    </combine3>
+    <multiply name = "_987" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_988" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <realitykit_viewdirection name = "_988" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </realitykit_viewdirection>
+    <constant name = "_TrailTextureScale" type = "vector2">
+        <input name = "value" type = "vector2" value = "0,0" />
+    </constant>
+    <ifgreater name = "_989" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_973" />
+        <input name = "in2" type = "vector3" value = "0,0,0" />
+        <input name = "value1" type = "float" nodename = "_990" />
+    </ifgreater>
+    <absval name = "_990" type = "float">
+        <input name = "in" type = "float" nodename = "_992" />
+    </absval>
+    <realitykit_geometry_modifier_vertex_id name = "_991" type = "integer">
+    </realitykit_geometry_modifier_vertex_id>
+    <ifgreater name = "_992" type = "float">
+        <input name = "value1" type = "float" nodename = "_1002" />
+        <input name = "value2" type = "float" nodename = "_VertexCount" />
+        <input name = "in1" type = "float" value = "0" />
+        <input name = "in2" type = "float" value = "1" />
+    </ifgreater>
+    <constant name = "_VertexCount" type = "float">
+        <input name = "value" type = "float" value = "0" />
+    </constant>
+    <GeometryModification name = "_993" type = "vertexshader">
+        <input name = "modelPositionOffset" type = "vector3" nodename = "_996" />
+        <input name = "color" type = "color4" nodename = "_1004" />
+        <input name = "normal" type = "vector3" nodename = "_998" />
+        <input name = "bitangent" type = "vector3" nodename = "_999" />
+    </GeometryModification>
+    <realitykit_pbr name = "_994" type = "surfaceshader">
+        <input name = "baseColor" type = "color3" nodename = "_1003" />
+        <input name = "opacity" type = "float" nodename = "_19" />
+        <input name = "normal" type = "vector3" nodename = "_986" />
+        <input name = "emissiveColor" type = "color3" value = "0,0,0" />
+        <input name = "ambientOcclusion" type = "float" value = "1" />
+        <input name = "metallic" type = "float" value = "0" />
+        <input name = "specular" type = "float" value = "0.5" />
+        <input name = "roughness" type = "float" nodename = "_1000" />
+        <input name = "clearcoat" type = "float" value = "0" />
+        <input name = "clearcoatRoughness" type = "float" value = "0.01" />
+    </realitykit_pbr>
+    <surfacematerial name = "USD_RenderParticleTrailsFromTextureLit" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "_993" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "_994" />
+    </surfacematerial>
+    <multiply name = "_995" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "_989" />
+    </multiply>
+    <subtract name = "_996" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_995" />
+        <input name = "in2" type = "vector3" nodename = "_997" />
+    </subtract>
+    <position name = "_997" type = "vector3">
+        <input name = "space" type = "string" value = "object" />
+    </position>
+    <multiply name = "_998" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "_987" />
+    </multiply>
+    <multiply name = "_999" type = "vector3">
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+        <input name = "in1" type = "vector3" nodename = "_966" />
+    </multiply>
+    <subtract name = "_1000" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" value = "0.5" />
+    </subtract>
+    <swizzle name = "_1001" type = "vector4">
+        <input name = "in" type = "color4" nodename = "_18" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <convert name = "_1002" type = "float">
+        <input name = "in" type = "integer" nodename = "_991" />
+    </convert>
+    <swizzle name = "_1003" type = "color3">
+        <input name = "in" type = "vector4" nodename = "_17" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+    <swizzle name = "_1004" type = "color4">
+        <input name = "in" type = "vector4" nodename = "_267" />
+        <input name = "channels" type = "string" value = "xyzw" />
+    </swizzle>
+</materialx>

@@ -1,0 +1,14 @@
+{
+  "assets" : [
+    {
+      "filename" : "AppIcon.solidimagestack",
+      "idiom" : "vision",
+      "role" : "",
+      "size" : "512x512"
+    }
+  ],
+  "info" : {
+    "author" : "DefaultCompany",
+    "version" : 1
+  }
+}

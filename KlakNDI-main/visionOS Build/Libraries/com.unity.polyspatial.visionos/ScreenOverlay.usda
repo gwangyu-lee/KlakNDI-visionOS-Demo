@@ -1,0 +1,794 @@
+#usda 1.0
+(
+    defaultPrim = "ScreenOverlayMaterial"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+reorder rootPrims = ["ScreenOverlayMaterial", "ScreenOverlayQuad"]
+
+def Material "ScreenOverlayMaterial"
+{
+    reorder nameChildren = ["GeometryModifier", "Texcoord", "UnlitSurface", "Convert", "Separate4", "DepthSeperate", "GBufferWorldPosToWorldPos", "ColorImage_1", "ColorImage_2", "GeometrySwitchCameraIndex", "LeftDepthImage", "RightDepthImage", "OriginConstant", "OriginLeftTransform", "OriginRightTransform", "OriginEyeSwitch", "WorldOriginPos", "Multiply_4", "Multiply_5", "UVToWorldPos", "GBufferEyeSwitch", "UVDepthToWorldPos"]
+    asset inputs:LeftColor = @EmojiOne.png@ (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-1074.9308, -459.1632)
+                float2 sizeInSubgraph = (126, 53)
+                int stackingOrderInSubgraph = 7958
+            }
+        }
+    )
+    asset inputs:LeftDepth = @depth.png@ (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-2273.9463, 376.43552)
+                float2 sizeInSubgraph = (130.5, 53)
+                int stackingOrderInSubgraph = 2785
+            }
+        }
+    )
+    matrix4d inputs:LeftInvViewProj = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) ) (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-1253.8928, 893.34784)
+                float2 sizeInSubgraph = (165, 53)
+                int stackingOrderInSubgraph = 7751
+            }
+        }
+    )
+    asset inputs:RightColor = @EmojiOne.png@ (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-1091.8746, -205.0166)
+                float2 sizeInSubgraph = (134, 53)
+                int stackingOrderInSubgraph = 7958
+            }
+        }
+    )
+    asset inputs:RightDepth = @depth.png@ (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-2284.983, 643.10834)
+                float2 sizeInSubgraph = (138.5, 53)
+                int stackingOrderInSubgraph = 2785
+            }
+        }
+    )
+    matrix4d inputs:RightInvViewProj = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) ) (
+        customData = {
+            dictionary realitykit = {
+                float2 positionInSubgraph = (-1260.1412, 968.8067)
+                float2 sizeInSubgraph = (173.5, 53)
+                int stackingOrderInSubgraph = 7981
+            }
+        }
+    )
+    token outputs:mtlx:surface.connect = </ScreenOverlayMaterial/UnlitSurface.outputs:out>
+    token outputs:realitykit:vertex.connect = </ScreenOverlayMaterial/GeometryModifier.outputs:out>
+    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (753.81915, 356.6943)
+    float2 ui:nodegraph:realitykit:subgraphOutputs:size = (181.5, 99)
+    int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 3267
+
+    def Shader "GeometryModifier"
+    {
+        uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+        float3 inputs:bitangent
+        color4f inputs:color
+        float3 inputs:modelPositionOffset.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos.outputs:WorldPos>
+        float3 inputs:normal
+        float4 inputs:userAttribute
+        half2 inputs:userAttributeHalf2_0
+        half2 inputs:userAttributeHalf2_1
+        half4 inputs:userAttributeHalf4_0
+        half4 inputs:userAttributeHalf4_1
+        half4 inputs:userAttributeHalf4_2
+        half4 inputs:userAttributeHalf4_3
+        float2 inputs:uv0
+        float2 inputs:uv1
+        token outputs:out
+        float2 ui:nodegraph:node:pos = (5.7695208, 899.66437)
+        float2 ui:nodegraph:node:size = (196.5, 325)
+        int ui:nodegraph:node:stackingOrder = 7718
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:modelPositionOffset"]
+    }
+
+    def Shader "Texcoord"
+    {
+        uniform token info:id = "ND_texcoord_vector2"
+        float2 outputs:out
+        float2 ui:nodegraph:node:pos = (-2377.417, -149.00314)
+        float2 ui:nodegraph:node:size = (180.5, 53)
+        int ui:nodegraph:node:stackingOrder = 5528
+    }
+
+    def Shader "UnlitSurface"
+    {
+        uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+        bool inputs:applyPostProcessToneMap = 0
+        color3f inputs:color.connect = </ScreenOverlayMaterial/Convert.outputs:out>
+        bool inputs:hasPremultipliedAlpha
+        float inputs:opacity = 1
+        float inputs:opacity.connect = </ScreenOverlayMaterial/SeparateAlpha.outputs:outa>
+        float inputs:opacityThreshold
+        token outputs:out
+        float2 ui:nodegraph:node:pos = (-83.40933, -119.394844)
+        float2 ui:nodegraph:node:size = (194.5, 181)
+        int ui:nodegraph:node:stackingOrder = 7858
+    }
+
+    def Shader "Convert"
+    {
+        uniform token info:id = "ND_convert_color4_color3"
+        color4f inputs:in.connect = </ScreenOverlayMaterial/GeometrySwitchCameraIndex.outputs:out>
+        color3f outputs:out
+        float2 ui:nodegraph:node:pos = (-306.22336, -219.29752)
+        float2 ui:nodegraph:node:size = (135.5, 40)
+        int ui:nodegraph:node:stackingOrder = 7855
+    }
+
+    def Shader "GeometrySwitchCameraIndex"
+    {
+        uniform token info:id = "ND_realitykit_geometry_switch_cameraindex_color4"
+        color4f inputs:left.connect = </ScreenOverlayMaterial/LeftColorImage.outputs:out>
+        color4f inputs:mono.connect = </ScreenOverlayMaterial/LeftColorImage.outputs:out>
+        color4f inputs:right.connect = </ScreenOverlayMaterial/RightColorImage.outputs:out>
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-604.5204, -223.65685)
+        float2 ui:nodegraph:node:size = (237, 145)
+        int ui:nodegraph:node:stackingOrder = 7960
+    }
+
+    def Shader "LeftDepthImage"
+    {
+        uniform token info:id = "ND_image_color4"
+        color4f inputs:default
+        asset inputs:file.connect = </ScreenOverlayMaterial.inputs:LeftDepth>
+        string inputs:filtertype
+        float2 inputs:texcoord.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        string inputs:uaddressmode = "clamp"
+        string inputs:vaddressmode = "clamp"
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-2011.7535, 455.3414)
+        float2 ui:nodegraph:node:size = (152, 199)
+        int ui:nodegraph:node:stackingOrder = 7981
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord"]
+    }
+
+    def Shader "RightDepthImage"
+    {
+        uniform token info:id = "ND_image_color4"
+        color4f inputs:default
+        asset inputs:file.connect = </ScreenOverlayMaterial.inputs:RightDepth>
+        string inputs:filtertype
+        float2 inputs:texcoord.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        string inputs:uaddressmode = "clamp"
+        string inputs:vaddressmode = "clamp"
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-2026.4095, 714.6128)
+        float2 ui:nodegraph:node:size = (160.5, 199)
+        int ui:nodegraph:node:stackingOrder = 7982
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord"]
+    }
+
+    def Shader "OriginConstant"
+    {
+        uniform token info:id = "ND_constant_vector4"
+        float4 inputs:value = (0, 0, 0, 1)
+        float4 outputs:out
+        float2 ui:nodegraph:node:pos = (-1991.729, 2056.3232)
+        float2 ui:nodegraph:node:size = (177.5, 53)
+        int ui:nodegraph:node:stackingOrder = 6334
+    }
+
+    def Shader "OriginLeftTransform"
+    {
+        uniform token info:id = "ND_transformmatrix_vector4"
+        float4 inputs:in.connect = </ScreenOverlayMaterial/OriginConstant.outputs:out>
+        matrix4d inputs:mat.connect = </ScreenOverlayMaterial/Multiply_4.outputs:out>
+        float4 outputs:out
+        float2 ui:nodegraph:node:pos = (-1650.335, 2014.6769)
+        float2 ui:nodegraph:node:size = (175, 127)
+        int ui:nodegraph:node:stackingOrder = 6334
+    }
+
+    def Shader "OriginRightTransform"
+    {
+        uniform token info:id = "ND_transformmatrix_vector4"
+        float4 inputs:in.connect = </ScreenOverlayMaterial/OriginConstant.outputs:out>
+        matrix4d inputs:mat.connect = </ScreenOverlayMaterial/Multiply_5.outputs:out>
+        float4 outputs:out
+        float2 ui:nodegraph:node:pos = (-1655.9944, 2161.2712)
+        float2 ui:nodegraph:node:size = (183, 127)
+        int ui:nodegraph:node:stackingOrder = 6334
+    }
+
+    def Shader "OriginEyeSwitch"
+    {
+        uniform token info:id = "ND_realitykit_geometry_switch_cameraindex_vector4"
+        float4 inputs:left.connect = </ScreenOverlayMaterial/OriginLeftTransform.outputs:out>
+        float4 inputs:mono.connect = </ScreenOverlayMaterial/OriginLeftTransform.outputs:out>
+        float4 inputs:right.connect = </ScreenOverlayMaterial/OriginRightTransform.outputs:out>
+        float4 outputs:out
+        float2 ui:nodegraph:node:pos = (-1399.6388, 2060.269)
+        float2 ui:nodegraph:node:size = (208, 145)
+        int ui:nodegraph:node:stackingOrder = 6334
+    }
+
+    def Shader "WorldOriginPos"
+    {
+        uniform token info:id = "ND_separate4_vector4"
+        float4 inputs:in.connect = </ScreenOverlayMaterial/OriginEyeSwitch.outputs:out>
+        float outputs:outw
+        float2 ui:nodegraph:node:pos = (-1162.8827, 2047.3224)
+        float2 ui:nodegraph:node:size = (148, 163)
+        int ui:nodegraph:node:stackingOrder = 6710
+    }
+
+    def Shader "Multiply_4"
+    {
+        uniform token info:id = "ND_multiply_matrix44"
+        matrix4d inputs:in1.connect = None
+        matrix4d inputs:in2.connect = None
+        matrix4d outputs:out
+        float2 ui:nodegraph:node:pos = (-2190.5513, 2073.803)
+        float2 ui:nodegraph:node:size = (60, 36)
+        int ui:nodegraph:node:stackingOrder = 6452
+    }
+
+    def Shader "Multiply_5"
+    {
+        uniform token info:id = "ND_multiply_matrix44"
+        matrix4d inputs:in1.connect = None
+        matrix4d inputs:in2.connect = None
+        matrix4d outputs:out
+        float2 ui:nodegraph:node:pos = (-2184.8508, 2170.9143)
+        float2 ui:nodegraph:node:size = (60, 36)
+        int ui:nodegraph:node:stackingOrder = 6454
+    }
+
+    def NodeGraph "UVToWorldPos"
+    {
+        float inputs:Depth = 1 (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (915.7508, 377.88562)
+                    float2 sizeInSubgraph = (106, 53)
+                    int stackingOrderInSubgraph = 6267
+                }
+            }
+        )
+        float2 inputs:uv = (0, 0) (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (-157.60701, 48.278)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 6254
+                }
+            }
+        )
+        float2 inputs:uv.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        float3 outputs:WorldPos (
+            customData = {
+                dictionary realitykit = {
+                    int stackingOrderInSubgraph = 6256
+                }
+            }
+        )
+        float3 outputs:WorldPos.connect = </ScreenOverlayMaterial/UVToWorldPos/TransformMatrix.outputs:out>
+        float2 ui:nodegraph:node:pos = (-936.0138, 245.43242)
+        float2 ui:nodegraph:node:size = (144, 127)
+        int ui:nodegraph:node:stackingOrder = 7754
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (2130.4067, 405.7889)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (202.06145, 81)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 6260
+
+        def Shader "GeometryModifierProjectionToView"
+        {
+            uniform token info:id = "ND_realitykit_geometry_modifier_projection_to_view"
+            matrix4d outputs:projectionToView
+            float2 ui:nodegraph:node:pos = (676.5, 290.5)
+            float2 ui:nodegraph:node:size = (250, 81)
+            int ui:nodegraph:node:stackingOrder = 6252
+        }
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_vector2"
+            float2 inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos.inputs:uv>
+            float2 inputs:in2 = (2, 2)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (30, 63.5)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 6261
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in1", "outputs:out"]
+        }
+
+        def Shader "Separate2_1"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </ScreenOverlayMaterial/UVToWorldPos/Subtract_2.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (366.5, 63.5)
+            float2 ui:nodegraph:node:size = (127.5, 127)
+            int ui:nodegraph:node:stackingOrder = 6263
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in"]
+        }
+
+        def Shader "Combine3"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos/Separate2_1.outputs:outx>
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVToWorldPos/Separate2_1.outputs:outy>
+            float inputs:in3 = 1
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (676.5, 63.5)
+            float2 ui:nodegraph:node:size = (145, 54)
+            int ui:nodegraph:node:stackingOrder = 6265
+        }
+
+        def Shader "Combine3_1"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos/Separate3.outputs:outx>
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVToWorldPos/Separate3.outputs:outy>
+            float inputs:in3 = -0.011
+            float inputs:in3.connect = </ScreenOverlayMaterial/UVToWorldPos/Multiply_4.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1604.5, 264.92188)
+            float2 ui:nodegraph:node:size = (157, 54)
+            int ui:nodegraph:node:stackingOrder = 6252
+        }
+
+        def Shader "Separate3"
+        {
+            uniform token info:id = "ND_separate3_vector3"
+            float3 inputs:in.connect = </ScreenOverlayMaterial/UVToWorldPos/Multiply_3.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (1352.4954, 206.62671)
+            float2 ui:nodegraph:node:size = (115.5, 145)
+            int ui:nodegraph:node:stackingOrder = 6271
+        }
+
+        def Shader "Subtract_2"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos/Multiply_2.outputs:out>
+            float2 inputs:in2 = (1, 1)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (150.75, 63.5)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 6262
+        }
+
+        def Shader "Multiply_3"
+        {
+            uniform token info:id = "ND_multiply_vector3FA"
+            float3 inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos/TransformMatrix_1.outputs:out>
+            float inputs:in2 = -1
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVToWorldPos/Multiply_4.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1181, 240.03125)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 6252
+        }
+
+        def Shader "InvertMatrix"
+        {
+            uniform token info:id = "ND_invertmatrix_matrix44"
+            matrix4d inputs:in.connect = </ScreenOverlayMaterial/UVToWorldPos/GeometryModifierModelToView.outputs:modelToView>
+            matrix4d outputs:out
+            float2 ui:nodegraph:node:pos = (1587.6093, 423.87476)
+            float2 ui:nodegraph:node:size = (160, 53)
+            int ui:nodegraph:node:stackingOrder = 6258
+        }
+
+        def Shader "GeometryModifierModelToView"
+        {
+            uniform token info:id = "ND_realitykit_geometry_modifier_model_to_view"
+            matrix4d outputs:modelToView
+            float2 ui:nodegraph:node:pos = (1291.6737, 497.38583)
+            float2 ui:nodegraph:node:size = (250, 81)
+            int ui:nodegraph:node:stackingOrder = 6260
+        }
+
+        def Shader "TransformMatrix"
+        {
+            uniform token info:id = "ND_transformmatrix_vector3M4"
+            float3 inputs:in.connect = </ScreenOverlayMaterial/UVToWorldPos/Combine3_1.outputs:out>
+            matrix4d inputs:mat.connect = </ScreenOverlayMaterial/UVToWorldPos/InvertMatrix.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (1819.25, 352.3672)
+            float2 ui:nodegraph:node:size = (152.5, 127)
+            int ui:nodegraph:node:stackingOrder = 6252
+        }
+
+        def Shader "TransformMatrix_1"
+        {
+            uniform token info:id = "ND_transformmatrix_vector3M4"
+            float3 inputs:in.connect = </ScreenOverlayMaterial/UVToWorldPos/Combine3.outputs:out>
+            matrix4d inputs:mat.connect = </ScreenOverlayMaterial/UVToWorldPos/GeometryModifierProjectionToView.outputs:projectionToView>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (951.25, 143.25)
+            float2 ui:nodegraph:node:size = (165, 127)
+            int ui:nodegraph:node:stackingOrder = 6252
+        }
+
+        def Shader "Multiply_4"
+        {
+            uniform token info:id = "ND_multiply_float"
+            float inputs:in1.connect = </ScreenOverlayMaterial/UVToWorldPos.inputs:Depth>
+            float inputs:in2 = -1
+            float outputs:out
+            float2 ui:nodegraph:node:pos = (1050.844, 359.1377)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 6269
+        }
+    }
+
+    def Shader "GBufferEyeSwitch"
+    {
+        uniform token info:id = "ND_realitykit_geometry_switch_cameraindex_color4"
+        color4f inputs:left.connect = </ScreenOverlayMaterial/LeftDepthImage.outputs:out>
+        color4f inputs:mono.connect = </ScreenOverlayMaterial/LeftDepthImage.outputs:out>
+        color4f inputs:right.connect = </ScreenOverlayMaterial/RightDepthImage.outputs:out>
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-1705.2554, 671.16486)
+        float2 ui:nodegraph:node:size = (208, 145)
+        int ui:nodegraph:node:stackingOrder = 6094
+    }
+
+    def NodeGraph "UVDepthToWorldPos"
+    {
+        color4f inputs:GBuffer = (0, 0, 0, 0) (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (365.48373, 337.89395)
+                    float2 sizeInSubgraph = (133, 53)
+                    int stackingOrderInSubgraph = 7961
+                }
+            }
+        )
+        color4f inputs:GBuffer.connect = </ScreenOverlayMaterial/GBufferEyeSwitch.outputs:out>
+        matrix4d inputs:LeftInvViewProjTransform_mat (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (890, 121)
+                    float2 sizeInSubgraph = (250, 53)
+                }
+            }
+        )
+        prepend matrix4d inputs:LeftInvViewProjTransform_mat.connect = </ScreenOverlayMaterial.inputs:LeftInvViewProj>
+        matrix4d inputs:RightInvViewProjTransform_mat (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (890, 366)
+                    float2 sizeInSubgraph = (250, 53)
+                    int stackingOrderInSubgraph = 7947
+                }
+            }
+        )
+        prepend matrix4d inputs:RightInvViewProjTransform_mat.connect = </ScreenOverlayMaterial.inputs:RightInvViewProj>
+        float2 inputs:UV (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (76.75, 145)
+                    float2 sizeInSubgraph = (138.5, 53)
+                    int stackingOrderInSubgraph = 7947
+                }
+            }
+        )
+        prepend float2 inputs:UV.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        float3 outputs:WorldPos (
+            customData = {
+                dictionary realitykit = {
+                    int stackingOrderInSubgraph = 7949
+                }
+            }
+        )
+        float3 outputs:WorldPos.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/Multiply_2.outputs:out>
+        float2 ui:nodegraph:node:pos = (-898.9594, 898.4952)
+        float2 ui:nodegraph:node:size = (217.5, 163)
+        int ui:nodegraph:node:stackingOrder = 7963
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = []
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (2800, 57)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (202.29944, 81)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 7952
+
+        def Shader "Multiply_2"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/WorldPosFromDepth.outputs:out>
+            float3 inputs:in2 = (1, 1, -1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (2619, 57)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "HomogenizedWorldPos"
+        {
+            uniform token info:id = "ND_separate4_vector4"
+            float4 inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/InvViewProjTransformationEyeSwitch.outputs:out>
+            float outputs:outw
+            float outputs:outx
+            float outputs:outy
+            float outputs:outz
+            float2 ui:nodegraph:node:pos = (1761.75, 181)
+            float2 ui:nodegraph:node:size = (196.5, 163)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "InvViewProjTransformationEyeSwitch"
+        {
+            uniform token info:id = "ND_realitykit_geometry_switch_cameraindex_vector4"
+            float4 inputs:left.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/LeftInvViewProjTransform.outputs:out>
+            float4 inputs:mono.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/LeftInvViewProjTransform.outputs:out>
+            float4 inputs:right.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/RightInvViewProjTransform.outputs:out>
+            float4 outputs:out
+            float2 ui:nodegraph:node:pos = (1478.5, 181)
+            float2 ui:nodegraph:node:size = (250, 145)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "Divide"
+        {
+            uniform token info:id = "ND_divide_color3FA"
+            color3f inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/WorldPosForWDivide.outputs:out>
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/HomogenizedWorldPos.outputs:outw>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2223.25, 57)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "Subtract"
+        {
+            uniform token info:id = "ND_subtract_vector2"
+            float2 inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/Multiply_1.outputs:out>
+            float2 inputs:in2 = (1, 1)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (364.25, 145)
+            float2 ui:nodegraph:node:size = (61.5, 36)
+            int ui:nodegraph:node:stackingOrder = 7946
+        }
+
+        def Shader "WorldPosForWDivide"
+        {
+            uniform token info:id = "ND_combine3_color3"
+            float inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/HomogenizedWorldPos.outputs:outx>
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/HomogenizedWorldPos.outputs:outy>
+            float inputs:in3.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/HomogenizedWorldPos.outputs:outz>
+            color3f outputs:out
+            float2 ui:nodegraph:node:pos = (2026.25, 27)
+            float2 ui:nodegraph:node:size = (212.5, 54)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "WorldPosFromDepth"
+        {
+            uniform token info:id = "ND_convert_color3_vector3"
+            color3f inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/Divide.outputs:out>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (2421.5, 57)
+            float2 ui:nodegraph:node:size = (215, 53)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "LeftInvViewProjTransform"
+        {
+            uniform token info:id = "ND_transformmatrix_vector4"
+            float4 inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/ClipSpaceDepthCombine.outputs:out>
+            matrix4d inputs:mat.connect = </ScreenOverlayMaterial/UVDepthToWorldPos.inputs:LeftInvViewProjTransform_mat>
+            float4 outputs:out
+            float2 ui:nodegraph:node:pos = (1184.25, 151)
+            float2 ui:nodegraph:node:size = (210, 127)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "UVtoClipSpace"
+        {
+            uniform token info:id = "ND_separate2_vector2"
+            float2 inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/Subtract.outputs:out>
+            float outputs:outx
+            float outputs:outy
+            float2 ui:nodegraph:node:pos = (580, 145)
+            float2 ui:nodegraph:node:size = (145, 127)
+            int ui:nodegraph:node:stackingOrder = 7944
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in"]
+        }
+
+        def Shader "ClipSpaceDepthCombine"
+        {
+            uniform token info:id = "ND_combine4_vector4"
+            float inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/UVtoClipSpace.outputs:outx>
+            float inputs:in2.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/UVtoClipSpace.outputs:outy>
+            float inputs:in3.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/DepthSeperate.outputs:outr>
+            float inputs:in4 = 1
+            float inputs:in4.connect = None
+            float4 outputs:out
+            float2 ui:nodegraph:node:pos = (890, 243.5)
+            float2 ui:nodegraph:node:size = (237, 72)
+            int ui:nodegraph:node:stackingOrder = 7962
+        }
+
+        def Shader "Multiply_1"
+        {
+            uniform token info:id = "ND_multiply_vector2"
+            float2 inputs:in1.connect = </ScreenOverlayMaterial/UVDepthToWorldPos.inputs:UV>
+            float2 inputs:in2 = (2, 2)
+            float2 outputs:out
+            float2 ui:nodegraph:node:pos = (243.5, 145)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 7945
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:in1", "outputs:out"]
+        }
+
+        def Shader "RightInvViewProjTransform"
+        {
+            uniform token info:id = "ND_transformmatrix_vector4"
+            float4 inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos/ClipSpaceDepthCombine.outputs:out>
+            matrix4d inputs:mat.connect = </ScreenOverlayMaterial/UVDepthToWorldPos.inputs:RightInvViewProjTransform_mat>
+            float4 outputs:out
+            float2 ui:nodegraph:node:pos = (1184.25, 338)
+            float2 ui:nodegraph:node:size = (218.5, 127)
+            int ui:nodegraph:node:stackingOrder = 7944
+        }
+
+        def Shader "DepthSeperate"
+        {
+            uniform token info:id = "ND_separate4_color4"
+            color4f inputs:in.connect = </ScreenOverlayMaterial/UVDepthToWorldPos.inputs:GBuffer>
+            float outputs:outa
+            float outputs:outb
+            float outputs:outg
+            float outputs:outr
+            float2 ui:nodegraph:node:pos = (580.39923, 352.5836)
+            float2 ui:nodegraph:node:size = (145, 163)
+            int ui:nodegraph:node:stackingOrder = 7958
+        }
+    }
+
+    def NodeGraph "GBufferWorldPosToWorldPos"
+    {
+        color4f inputs:GBuffer (
+            customData = {
+                dictionary realitykit = {
+                    float2 positionInSubgraph = (53.75, 74.375)
+                    float2 sizeInSubgraph = (133, 53)
+                    int stackingOrderInSubgraph = 7812
+                }
+            }
+        )
+        prepend color4f inputs:GBuffer.connect = </ScreenOverlayMaterial/GBufferEyeSwitch.outputs:out>
+        float3 outputs:WorldPos (
+            customData = {
+                dictionary realitykit = {
+                    int stackingOrderInSubgraph = 7812
+                }
+            }
+        )
+        float3 outputs:WorldPos.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos/Multiply.outputs:out>
+        float2 ui:nodegraph:node:pos = (-881.4735, 543.1055)
+        float2 ui:nodegraph:node:size = (232, 109)
+        int ui:nodegraph:node:stackingOrder = 7967
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (928.6367, 111.22656)
+        float2 ui:nodegraph:realitykit:subgraphOutputs:size = (202, 81)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 7810
+
+        def Shader "Multiply"
+        {
+            uniform token info:id = "ND_multiply_vector3"
+            float3 inputs:in1.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos/WorldPos.outputs:out>
+            float3 inputs:in2 = (1, 1, -1)
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (697, 81.5)
+            float2 ui:nodegraph:node:size = (60, 36)
+            int ui:nodegraph:node:stackingOrder = 7808
+        }
+
+        def Shader "GBufferSeparate"
+        {
+            uniform token info:id = "ND_separate4_color4"
+            color4f inputs:in.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos.inputs:GBuffer>
+            float outputs:outa
+            float outputs:outb
+            float outputs:outg
+            float outputs:outr
+            float2 ui:nodegraph:node:pos = (328.75, 81.5)
+            float2 ui:nodegraph:node:size = (155.5, 163)
+            int ui:nodegraph:node:stackingOrder = 7808
+        }
+
+        def Shader "WorldPos"
+        {
+            uniform token info:id = "ND_combine3_vector3"
+            float inputs:in1.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos/GBufferSeparate.outputs:outr>
+            float inputs:in2.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos/GBufferSeparate.outputs:outg>
+            float inputs:in3.connect = </ScreenOverlayMaterial/GBufferWorldPosToWorldPos/GBufferSeparate.outputs:outb>
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (536.75, 81.5)
+            float2 ui:nodegraph:node:size = (140.5, 54)
+            int ui:nodegraph:node:stackingOrder = 7808
+        }
+    }
+
+    def Shader "LeftColorImage"
+    {
+        uniform token info:id = "ND_image_color4"
+        color4f inputs:default = (0, 0, 0, 0) (
+            colorSpace = "srgb_displayp3"
+        )
+        asset inputs:file.connect = </ScreenOverlayMaterial.inputs:LeftColor>
+        string inputs:filtertype
+        float2 inputs:texcoord.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        string inputs:uaddressmode = "clamp"
+        string inputs:vaddressmode = "clamp"
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-885.5579, -395.1861)
+        float2 ui:nodegraph:node:size = (148.5, 199)
+        int ui:nodegraph:node:stackingOrder = 7976
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord", "inputs:file"]
+    }
+
+    def Shader "RightColorImage"
+    {
+        uniform token info:id = "ND_image_color4"
+        color4f inputs:default
+        asset inputs:file.connect = </ScreenOverlayMaterial.inputs:RightColor>
+        string inputs:filtertype
+        float2 inputs:texcoord.connect = </ScreenOverlayMaterial/Texcoord.outputs:out>
+        string inputs:uaddressmode = "clamp"
+        string inputs:vaddressmode = "clamp"
+        color4f outputs:out
+        float2 ui:nodegraph:node:pos = (-900.2139, -135.91472)
+        float2 ui:nodegraph:node:size = (156, 199)
+        int ui:nodegraph:node:stackingOrder = 7977
+        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:texcoord"]
+    }
+
+    def Shader "SeparateAlpha"
+    {
+        uniform token info:id = "ND_separate4_color4"
+        color4f inputs:in.connect = </ScreenOverlayMaterial/GeometrySwitchCameraIndex.outputs:out>
+        float outputs:outa
+        float outputs:outb
+        float outputs:outg
+        float outputs:outr
+        float2 ui:nodegraph:node:pos = (-309.75778, -86.694664)
+        float2 ui:nodegraph:node:size = (142.5, 163)
+        int ui:nodegraph:node:stackingOrder = 7979
+    }
+}
+
+def Mesh "ScreenOverlayQuad" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    customData = {
+        float3 rotationEulerHint = (1.5707966, 0.78539824, 3.1415927)
+    }
+    references = </Root/quadoverlay/Geom/OverlayQuad>
+)
+{
+    uniform bool doubleSided = 0
+    int[] faceVertexCounts = [3, 3]
+    int[] faceVertexIndices = [0, 1, 3, 0, 3, 2]
+    rel material:binding = </ScreenOverlayMaterial> (
+        bindMaterialAs = "weakerThanDescendants"
+    )
+    point3f[] points = [(0, 0, -0), (0, 0, -0), (0, 0, -0), (0, 0, -0)]
+    normal3f[] primvars:normals = [(0, 1, -0), (0, 1, -0), (0, 1, -0), (0, 1, -0)] (
+        interpolation = "vertex"
+    )
+    texCoord2f[] primvars:st = [(0, 0), (1, 0), (0, 1), (1, 1)] (
+        interpolation = "vertex"
+    )
+    uniform token subdivisionScheme = "none"
+    quatf xformOp:orient = (0.27059808, -0.27059805, 0.65328157, 0.6532814)
+    float3 xformOp:scale = (1, 1, 1)
+    float3 xformOp:translate = (-0.02, 0.02, 0.02)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+}
+

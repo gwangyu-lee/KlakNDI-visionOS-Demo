@@ -1,0 +1,2 @@
+File timestamp APIs usage:
+	"System.IO.FileSystemInfo::get_LastWriteTime" used in assemblies:		Unity.PolySpatial.Core

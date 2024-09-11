@@ -1,0 +1,17 @@
+{
+    "name": "VisionOS XR Plugin",
+    "version": "0.1.0",
+    "libraryName": "UnityVisionOS",
+    "inputs": [
+    {
+        "id": "VisionOS-Input"
+    }],
+    "meshings": [
+    {
+        "id": "VisionOS-Meshing"
+    }],
+    "displays": [
+    {
+        "id": "VisionOS-Display"
+    }]
+}

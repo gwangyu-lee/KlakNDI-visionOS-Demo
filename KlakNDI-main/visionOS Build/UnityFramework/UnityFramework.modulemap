@@ -1,0 +1,31 @@
+﻿/*
+ What are module maps: https://clang.llvm.org/docs/Modules.html#module-maps
+ Module map specification: https://clang.llvm.org/docs/Modules.html#module-map-language
+
+ Use in your Swift code by importing UnityFramework:
+    ...
+    #import UnityFramework
+    ...
+ */
+framework module UnityFramework {
+    /*
+     Export the UnityFramework is a module
+     */
+  umbrella header "UnityFramework.h"
+
+  export *
+  module * { export * }
+
+  module UnityInterface {
+      /*
+       Export the public Unity interface headers from outside the
+       module as a sub-module.
+
+       Types in these headers should be visible by just doing the
+       import described above.
+       */
+      
+      export *
+  }
+
+}

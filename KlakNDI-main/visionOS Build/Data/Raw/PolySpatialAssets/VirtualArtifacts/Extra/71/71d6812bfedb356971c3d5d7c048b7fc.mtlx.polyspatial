@@ -1,0 +1,85 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <mix name = "_1" type = "vector3">
+        <input name = "bg" type = "vector3" nodename = "_13" />
+        <input name = "fg" type = "vector3" value = "1,1,1" />
+        <input name = "mix" type = "float" nodename = "_12" />
+    </mix>
+    <geomcolor name = "_2" type = "color4">
+    </geomcolor>
+    <min name = "_3" type = "float">
+        <input name = "in1" type = "float" nodename = "_5" />
+        <input name = "in2" type = "float" nodename = "_6" />
+    </min>
+    <dot name = "_4" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_18" />
+    </dot>
+    <extract name = "_5" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_6" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_7" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "_8" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <min name = "_9" type = "float">
+        <input name = "in1" type = "float" nodename = "_3" />
+        <input name = "in2" type = "float" nodename = "_11" />
+    </min>
+    <subtract name = "_10" type = "float">
+        <input name = "in2" type = "float" nodename = "_5" />
+        <input name = "in1" type = "float" value = "1" />
+    </subtract>
+    <subtract name = "_11" type = "float">
+        <input name = "in1" type = "float" nodename = "_10" />
+        <input name = "in2" type = "float" nodename = "_6" />
+    </subtract>
+    <splitlr name = "_12" type = "float">
+        <input name = "valuel" type = "float" value = "0" />
+        <input name = "valuer" type = "float" value = "1" />
+        <input name = "center" type = "float" value = "0.01" />
+        <input name = "texcoord" type = "vector2" nodename = "_19" />
+    </splitlr>
+    <multiply name = "_13" type = "vector3">
+        <input name = "in1" type = "vector3" nodename = "_14" />
+        <input name = "in2" type = "vector3" value = "1,1,-1" />
+    </multiply>
+    <normal name = "_14" type = "vector3">
+        <input name = "space" type = "string" value = "world" />
+    </normal>
+    <subtract name = "_15" type = "float">
+        <input name = "in2" type = "float" nodename = "_12" />
+        <input name = "in1" type = "float" value = "1" />
+    </subtract>
+    <GeometryModification name = "_16" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "_17" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" nodename = "_20" />
+        <input name = "opacity" type = "float" nodename = "_15" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_WireFrameSplitLR" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "_16" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "_17" />
+    </surfacematerial>
+    <swizzle name = "_18" type = "vector4">
+        <input name = "in" type = "color4" nodename = "_2" />
+        <input name = "channels" type = "string" value = "rgba" />
+    </swizzle>
+    <swizzle name = "_19" type = "vector2">
+        <input name = "in" type = "float" nodename = "_9" />
+        <input name = "channels" type = "string" value = "xx" />
+    </swizzle>
+    <swizzle name = "_20" type = "color3">
+        <input name = "in" type = "vector3" nodename = "_1" />
+        <input name = "channels" type = "string" value = "xyz" />
+    </swizzle>
+</materialx>

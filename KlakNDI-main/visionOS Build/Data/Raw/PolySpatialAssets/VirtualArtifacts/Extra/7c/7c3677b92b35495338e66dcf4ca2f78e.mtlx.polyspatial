@@ -1,0 +1,78 @@
+<?xml version ="1.0"?>
+<materialx version = "1.38" colorspace = "lin_rec709">
+    <texcoord name = "_1" type = "vector2">
+        <input name = "index" type = "integer" value = "0" />
+    </texcoord>
+    <multiply name = "_2" type = "vector2">
+        <input name = "in1" type = "vector2" value = "1,-1" />
+        <input name = "in2" type = "vector2" nodename = "_1" />
+    </multiply>
+    <add name = "_3" type = "vector2">
+        <input name = "in1" type = "vector2" value = "0,1" />
+        <input name = "in2" type = "vector2" nodename = "_2" />
+    </add>
+    <constant name = "_Percentage" type = "float">
+        <input name = "value" type = "float" value = "0.5" />
+    </constant>
+    <dot name = "_4" type = "vector4">
+        <input name = "in" type = "vector4" nodename = "_14" />
+    </dot>
+    <extract name = "_5" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "0" />
+    </extract>
+    <extract name = "_6" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "1" />
+    </extract>
+    <extract name = "_7" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "2" />
+    </extract>
+    <extract name = "_8" type = "float">
+        <input name = "in" type = "vector4" nodename = "_4" />
+        <input name = "index" type = "integer" value = "3" />
+    </extract>
+    <splitlr name = "_9" type = "float">
+        <input name = "valuel" type = "float" value = "1" />
+        <input name = "valuer" type = "float" value = "0" />
+        <input name = "center" type = "float" nodename = "_10" />
+        <input name = "texcoord" type = "vector2" nodename = "_17" />
+    </splitlr>
+    <subtract name = "_10" type = "float">
+        <input name = "in1" type = "float" value = "1" />
+        <input name = "in2" type = "float" nodename = "_Percentage" />
+    </subtract>
+    <GeometryModification name = "_11" type = "vertexshader">
+    </GeometryModification>
+    <realitykit_unlit name = "_12" type = "surfaceshader">
+        <input name = "applyPostProcessToneMap" type = "boolean" value = "false" />
+        <input name = "color" type = "color3" value = "0.1144354,0.3915726,1" />
+        <input name = "opacity" type = "float" nodename = "_9" />
+    </realitykit_unlit>
+    <surfacematerial name = "USD_Slider" type = "material">
+        <input name = "vertexshader" type = "vertexshader" nodename = "_11" />
+        <input name = "surfaceshader" type = "surfaceshader" nodename = "_12" />
+    </surfacematerial>
+    <dot name = "_13" type = "vector2">
+        <input name = "in" type = "vector2" nodename = "_3" />
+    </dot>
+    <combine4 name = "_14" type = "vector4">
+        <input name = "in1" type = "float" nodename = "_15" />
+        <input name = "in2" type = "float" nodename = "_16" />
+        <input name = "in3" type = "float" value = "0" />
+        <input name = "in4" type = "float" value = "0" />
+    </combine4>
+    <swizzle name = "_15" type = "float">
+        <input name = "in" type = "vector2" nodename = "_13" />
+        <input name = "channels" type = "string" value = "x" />
+    </swizzle>
+    <swizzle name = "_16" type = "float">
+        <input name = "in" type = "vector2" nodename = "_13" />
+        <input name = "channels" type = "string" value = "y" />
+    </swizzle>
+    <swizzle name = "_17" type = "vector2">
+        <input name = "in" type = "float" nodename = "_6" />
+        <input name = "channels" type = "string" value = "xx" />
+    </swizzle>
+</materialx>

@@ -1,0 +1,4767 @@
+#usda 1.0
+(
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "MaterialX"
+{
+    def "Materials"
+    {
+        def Material "USD_RenderParticleTrailsFromTextureUnlit"
+        {
+            float4 inputs:TextureTransform_BaseMap = (1, 1, 0, 0)
+            asset inputs:_BaseMap = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:_TrailsIndexDataTexture = @placeholder.png@ (colorSpace = "srgb_texture")
+            asset inputs:_TrailsVertexDataTexture = @placeholder.png@ (colorSpace = "srgb_texture")
+            float3 inputs:TextureSize_TrailsIndexDataTexture = (0, 0, 0)
+            float3 inputs:TextureSize_TrailsVertexDataTexture = (0, 0, 0)
+            float2 inputs:_TrailTextureScale = (0, 0)
+            float inputs:_VertexCount = 0
+
+            token outputs:mtlx:surface.connect = <realitykit_unlit.outputs:out>
+            token outputs:realitykit:vertex.connect = <GeometryModifier.outputs:out>
+
+            def Shader "realitykit_unlit"
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap = 0
+                color3f inputs:color.connect = <../_998.outputs:out>
+                float inputs:opacity.connect = <../_20.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "GeometryModifier"
+            {
+                uniform token info:id = "ND_realitykit_geometrymodifier_vertexshader"
+                float3 inputs:modelPositionOffset.connect = <../_994.outputs:out>
+                color4f inputs:color.connect = <../_999.outputs:out>
+                float2 inputs:uv0.connect = <../_971.outputs:out>
+                token outputs:out
+            }
+
+            def Shader "_998"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color3"
+                float4 inputs:in.connect = <../_18.outputs:out>
+                string inputs:channels = "xyz"
+                color3f outputs:out
+            }
+
+            def Shader "_18"
+            {
+                uniform token info:id = "ND_multiply_vector4"
+                float4 inputs:in1.connect = <../_2.outputs:out>
+                float4 inputs:in2.connect = <../_996.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "_2"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = <../_3.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "_3"
+            {
+                uniform token info:id = "ND_RealityKitTexture2D_vector4"
+                asset inputs:file.connect = <../_4.outputs:out>
+                float2 inputs:texcoord.connect = <../_5.outputs:out>
+                string inputs:min_filter = "linear"
+                string inputs:mag_filter = "linear"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "repeat"
+                string inputs:v_wrap_mode = "repeat"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_4"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../.inputs:_BaseMap>
+                asset outputs:out
+            }
+
+            def Shader "_20"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_18.outputs:out>
+                string inputs:channels = "w"
+                float outputs:out
+            }
+
+            def Shader "_994"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = <../_993.outputs:out>
+                float3 inputs:in2.connect = <../_995.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_995"
+            {
+                uniform token info:id = "ND_position_vector3"
+                string inputs:space = "object"
+                float3 outputs:out
+            }
+
+            def Shader "_993"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in2 = (1, 1, -1)
+                float3 inputs:in1.connect = <../_987.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_987"
+            {
+                uniform token info:id = "ND_ifgreater_vector3"
+                float3 inputs:in1.connect = <../_974.outputs:out>
+                float3 inputs:in2 = (0, 0, 0)
+                float inputs:value1.connect = <../_988.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_988"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_990.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_990"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:value1.connect = <../_997.outputs:out>
+                float inputs:value2.connect = <../.inputs:_VertexCount>
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_997"
+            {
+                uniform token info:id = "ND_convert_integer_float"
+                int inputs:in.connect = <../_989.outputs:vertexId>
+                float outputs:out
+            }
+
+            def Shader "_989"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_vertex_id"
+                int outputs:vertexId
+            }
+
+            def Shader "_974"
+            {
+                uniform token info:id = "ND_add_vector3"
+                float3 inputs:in1.connect = <../_287.outputs:out>
+                float3 inputs:in2.connect = <../_973.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_973"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = <../_968.outputs:out>
+                float3 inputs:in2.connect = <../_986.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_986"
+            {
+                uniform token info:id = "ND_swizzle_float_vector3"
+                float inputs:in.connect = <../_972.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "_972"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = <../_491.outputs:out>
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "_491"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_492.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_492"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_482.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_482"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_483.outputs:out>
+                float2 inputs:texcoord.connect = <../_484.outputs:out>
+                float inputs:lod.connect = <../_490.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_483"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_464.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_464"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_976"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../.inputs:_TrailsVertexDataTexture>
+                asset outputs:out
+            }
+
+            def Shader "_968"
+            {
+                uniform token info:id = "ND_multiply_vector3"
+                float3 inputs:in1.connect = <../_967.outputs:out>
+                float3 inputs:in2.connect = <../_985.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_985"
+            {
+                uniform token info:id = "ND_swizzle_float_vector3"
+                float inputs:in.connect = <../_951.outputs:out>
+                string inputs:channels = "xxx"
+                float3 outputs:out
+            }
+
+            def Shader "_951"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1 = 1
+                float inputs:in2 = -1
+                float inputs:value1.connect = <../_952.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_952"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_950.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_950"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:value1.connect = <../_949.outputs:out>
+                float inputs:value2 = 0.9
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "_949"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = <../_51.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "_51"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_52.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_52"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_42.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_42"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_43.outputs:out>
+                float2 inputs:texcoord.connect = <../_44.outputs:out>
+                float inputs:lod.connect = <../_50.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_43"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_24.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_24"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_975.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_975"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../.inputs:_TrailsIndexDataTexture>
+                asset outputs:out
+            }
+
+            def Shader "_967"
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = <../_966.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_966"
+            {
+                uniform token info:id = "ND_crossproduct_vector3"
+                float3 inputs:in1.connect = <../_946.outputs:out>
+                float3 inputs:in2.connect = <../_965.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_965"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector3"
+                float4 inputs:in.connect = <../_963.outputs:out>
+                string inputs:channels = "xyz"
+                float3 outputs:out
+            }
+
+            def Shader "_963"
+            {
+                uniform token info:id = "ND_transformmatrix_vector4"
+                float4 inputs:in = (0, 0, 1, 0)
+                matrix4d inputs:mat.connect = <../_960.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "_960"
+            {
+                uniform token info:id = "ND_transpose_matrix44"
+                matrix4d inputs:in.connect = <../_961.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "_961"
+            {
+                uniform token info:id = "ND_dot_matrix44"
+                matrix4d inputs:in.connect = <../_953.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "_953"
+            {
+                uniform token info:id = "ND_dot_matrix44"
+                matrix4d inputs:in.connect = <../_954.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "_954"
+            {
+                uniform token info:id = "ND_dot_matrix44"
+                matrix4d inputs:in.connect = <../_955.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "_955"
+            {
+                uniform token info:id = "ND_multiply_matrix44"
+                matrix4d inputs:in1.connect = <../_956.outputs:modelToView>
+                matrix4d inputs:in2.connect = <../_957.outputs:out>
+                matrix4d outputs:out
+            }
+
+            def Shader "_956"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_model_to_view"
+                matrix4d outputs:modelToView
+            }
+
+            def Shader "_946"
+            {
+                uniform token info:id = "ND_ifgreater_vector3"
+                float3 inputs:in1.connect = <../_948.outputs:out>
+                float3 inputs:in2.connect = <../_938.outputs:out>
+                float inputs:value1.connect = <../_947.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_938"
+            {
+                uniform token info:id = "ND_ifgreater_vector3"
+                float3 inputs:in1.connect = <../_941.outputs:out>
+                float3 inputs:in2.connect = <../_936.outputs:out>
+                float inputs:value1.connect = <../_939.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_941"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = <../_704.outputs:out>
+                float3 inputs:in2.connect = <../_287.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_704"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_705.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_705"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = <../_700.outputs:out>
+                float inputs:in2.connect = <../_701.outputs:out>
+                float inputs:in3.connect = <../_702.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_700"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_738.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_738"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_739.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_739"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_729.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_729"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_730.outputs:out>
+                float2 inputs:texcoord.connect = <../_731.outputs:out>
+                float inputs:lod.connect = <../_737.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_730"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_711.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_711"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_874.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_874"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_948"
+            {
+                uniform token info:id = "ND_normalize_vector3"
+                float3 inputs:in.connect = <../_938.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_287"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_288.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_288"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = <../_283.outputs:out>
+                float inputs:in2.connect = <../_284.outputs:out>
+                float inputs:in3.connect = <../_285.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_285"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_376.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_376"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_377.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_377"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_367.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_367"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_368.outputs:out>
+                float2 inputs:texcoord.connect = <../_369.outputs:out>
+                float inputs:lod.connect = <../_375.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_368"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_349.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_349"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_457.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_457"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_284"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_431.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_431"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_432.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_432"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_422.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_422"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_423.outputs:out>
+                float2 inputs:texcoord.connect = <../_424.outputs:out>
+                float inputs:lod.connect = <../_430.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_424"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_425.outputs:out>
+                float2 inputs:in2.connect = <../_429.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_425"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_426.outputs:out>
+                float2 inputs:in2.connect = <../_427.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_426"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_439.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_439"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_402.outputs:out>
+                float2 inputs:in2.connect = <../_440.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_402"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_419.outputs:out>
+                float2 inputs:in2.connect = <../_456.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_419"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_420.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_420"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_413.outputs:out>
+                float inputs:in2.connect = <../_414.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_413"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_409.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_409"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_406.outputs:out>
+                float inputs:in2.connect = <../_410.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_406"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_405.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_405"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_403.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_403"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_458.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_458"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_116"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_117.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_117"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = <../_112.outputs:out>
+                float inputs:in2.connect = <../_113.outputs:out>
+                float inputs:in3.connect = <../_114.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_112"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_123.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_123"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1 = 0
+                float inputs:in2.connect = <../_122.outputs:out>
+                float inputs:value1.connect = <../_124.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_122"
+            {
+                uniform token info:id = "ND_round_float"
+                float inputs:in.connect = <../_106.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_106"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = <../_109.outputs:out>
+                float inputs:in2.connect = <../_126.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_109"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_105.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_105"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = <../_934.outputs:out>
+                float inputs:in2 = 13
+                float outputs:out
+            }
+
+            def Shader "_934"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = <../_935.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_935"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_104.outputs:out>
+                float inputs:in2 = 0.01
+                float outputs:out
+            }
+
+            def Shader "_104"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = <../_51.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "_423"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_404.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_404"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_457.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_283"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_321.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_321"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_322.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_322"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_312.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_312"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_313.outputs:out>
+                float2 inputs:texcoord.connect = <../_314.outputs:out>
+                float inputs:lod.connect = <../_320.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_320"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_314"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_315.outputs:out>
+                float2 inputs:in2.connect = <../_319.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_319"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_318.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_318"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_315"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_316.outputs:out>
+                float2 inputs:in2.connect = <../_317.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_317"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_318.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_316"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_329.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_329"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_292.outputs:out>
+                float2 inputs:in2.connect = <../_330.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_330"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_346.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_346"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_344.outputs:out>
+                float inputs:in2.connect = <../_345.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_344"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_342.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_342"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_341.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_341"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_291.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_291"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_128"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../.inputs:TextureSize_TrailsVertexDataTexture>
+                float3 outputs:out
+            }
+
+            def Shader "_292"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_309.outputs:out>
+                float2 inputs:in2.connect = <../_346.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_309"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_310.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_310"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_303.outputs:out>
+                float inputs:in2.connect = <../_304.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_304"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_297.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_297"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_295.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_295"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_293.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_293"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_458.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_303"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_299.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_299"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_296.outputs:out>
+                float inputs:in2.connect = <../_300.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_300"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_459.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_459"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 2
+                float outputs:out
+            }
+
+            def Shader "_296"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_295.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_313"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_294.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_294"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_457.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_999"
+            {
+                uniform token info:id = "ND_swizzle_vector4_color4"
+                float4 inputs:in.connect = <../_268.outputs:out>
+                string inputs:channels = "xyzw"
+                color4f outputs:out
+            }
+
+            def Shader "_268"
+            {
+                uniform token info:id = "ND_dot_vector4"
+                float4 inputs:in.connect = <../_269.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "_269"
+            {
+                uniform token info:id = "ND_combine4_vector4"
+                float inputs:in1.connect = <../_270.outputs:out>
+                float inputs:in2.connect = <../_271.outputs:out>
+                float inputs:in3.connect = <../_272.outputs:out>
+                float inputs:in4.connect = <../_273.outputs:out>
+                float4 outputs:out
+            }
+
+            def Shader "_273"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_267.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_267"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_265.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_265"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_278.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_278"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1.connect = <../_260.outputs:out>
+                float2 inputs:in2 = (0.999, 0.999)
+                float2 outputs:out
+            }
+
+            def Shader "_260"
+            {
+                uniform token info:id = "ND_subtract_vector2"
+                float2 inputs:in1.connect = <../_258.outputs:out>
+                float2 inputs:in2.connect = <../_259.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_258"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_279.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_279"
+            {
+                uniform token info:id = "ND_constant_vector2"
+                float2 inputs:value.connect = <../_141.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_141"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_142.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_142"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_135.outputs:out>
+                float inputs:in2.connect = <../_136.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_135"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_173.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_173"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_174.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_174"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_164.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_164"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_165.outputs:out>
+                float2 inputs:texcoord.connect = <../_166.outputs:out>
+                float inputs:lod.connect = <../_172.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_165"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_146.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_146"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_254.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_254"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_272"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_264.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_264"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_262.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_262"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_280.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_280"
+            {
+                uniform token info:id = "ND_divide_vector2"
+                float2 inputs:in1.connect = <../_261.outputs:out>
+                float2 inputs:in2 = (255, 255)
+                float2 outputs:out
+            }
+
+            def Shader "_261"
+            {
+                uniform token info:id = "ND_floor_vector2"
+                float2 inputs:in.connect = <../_279.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_271"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_266.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_266"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_265.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_270"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_263.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_263"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_262.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_971"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_978.outputs:out>
+                float inputs:in2.connect = <../_983.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_983"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_982.outputs:out>
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "_982"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = <../_969.outputs:out>
+                float inputs:in2.connect = <../_981.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_981"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_979.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_979"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_977.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_977"
+            {
+                uniform token info:id = "ND_constant_vector2"
+                float2 inputs:value.connect = <../.inputs:_TrailTextureScale>
+                float2 outputs:out
+            }
+
+            def Shader "_969"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1 = -0.5
+                float inputs:in2 = 0.5
+                float inputs:value1.connect = <../_970.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_970"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_950.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_978"
+            {
+                uniform token info:id = "ND_multiply_float"
+                float inputs:in1.connect = <../_908.outputs:out>
+                float inputs:in2.connect = <../_980.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_980"
+            {
+                uniform token info:id = "ND_extract_vector2"
+                float2 inputs:in.connect = <../_979.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_908"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_909.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_909"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_899.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_899"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_900.outputs:out>
+                float2 inputs:texcoord.connect = <../_901.outputs:out>
+                float inputs:lod.connect = <../_907.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_907"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_901"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_902.outputs:out>
+                float2 inputs:in2.connect = <../_906.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_906"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_905.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_905"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_902"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_903.outputs:out>
+                float2 inputs:in2.connect = <../_904.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_904"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_905.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_903"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_916.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_916"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_879.outputs:out>
+                float2 inputs:in2.connect = <../_917.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_917"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_933.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_933"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_931.outputs:out>
+                float inputs:in2.connect = <../_932.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_932"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_930.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_930"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_928.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_928"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_931"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_929.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_929"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_928.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_879"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_896.outputs:out>
+                float2 inputs:in2.connect = <../_933.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_896"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_897.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_897"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_890.outputs:out>
+                float inputs:in2.connect = <../_891.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_891"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_884.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_884"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_882.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_882"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_880.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_880"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_890"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_886.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_886"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_883.outputs:out>
+                float inputs:in2.connect = <../_887.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_887"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 12
+                float outputs:out
+            }
+
+            def Shader "_883"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_882.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_900"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_881.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_881"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_996"
+            {
+                uniform token info:id = "ND_swizzle_color4_vector4"
+                color4f inputs:in.connect = <../_19.outputs:out>
+                string inputs:channels = "rgba"
+                float4 outputs:out
+            }
+
+            def Shader "_19"
+            {
+                uniform token info:id = "ND_geomcolor_color4"
+                color4f outputs:out
+            }
+
+            def Shader "_5"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_6.outputs:out>
+                float2 inputs:in2.connect = <../_9.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_9"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../.inputs:TextureTransform_BaseMap>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_6"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_7.outputs:out>
+                float2 inputs:in2.connect = <../_8.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_8"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../.inputs:TextureTransform_BaseMap>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_7"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_1.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_1"
+            {
+                uniform token info:id = "ND_texcoord_vector2"
+                int inputs:index = 0
+                float2 outputs:out
+            }
+
+            def Shader "_484"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_485.outputs:out>
+                float2 inputs:in2.connect = <../_489.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_489"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_488.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_488"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_485"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_486.outputs:out>
+                float2 inputs:in2.connect = <../_487.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_487"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_488.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_486"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_499.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_499"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_462.outputs:out>
+                float2 inputs:in2.connect = <../_500.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_500"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_516.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_516"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_514.outputs:out>
+                float inputs:in2.connect = <../_515.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_515"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_513.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_513"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_511.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_511"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_514"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_512.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_512"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_511.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_462"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_479.outputs:out>
+                float2 inputs:in2.connect = <../_516.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_479"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_480.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_480"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_473.outputs:out>
+                float inputs:in2.connect = <../_474.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_474"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_467.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_467"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_465.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_465"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_463.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_463"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_473"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_469.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_469"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_466.outputs:out>
+                float inputs:in2.connect = <../_470.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_470"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 5
+                float outputs:out
+            }
+
+            def Shader "_466"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_465.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_490"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_44"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_45.outputs:out>
+                float2 inputs:in2.connect = <../_49.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_49"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_48.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_48"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_45"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_46.outputs:out>
+                float2 inputs:in2.connect = <../_47.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_47"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_48.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_46"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_59.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_59"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_22.outputs:out>
+                float2 inputs:in2.connect = <../_60.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_60"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_76.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_76"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_74.outputs:out>
+                float inputs:in2.connect = <../_75.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_75"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_73.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_73"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_71.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_71"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_21.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_21"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../.inputs:TextureSize_TrailsIndexDataTexture>
+                float3 outputs:out
+            }
+
+            def Shader "_74"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_72.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_72"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_71.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_22"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_39.outputs:out>
+                float2 inputs:in2.connect = <../_76.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_39"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_40.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_40"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_33.outputs:out>
+                float inputs:in2.connect = <../_34.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_34"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_27.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_27"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_25.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_25"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_23.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_23"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_87.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_87"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_88.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_88"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = <../_83.outputs:out>
+                float inputs:in2.connect = <../_84.outputs:out>
+                float inputs:in3.connect = <../_85.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_85"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_84"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_79.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_79"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = <../_91.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_91"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_78.outputs:out>
+                float inputs:in2.connect = <../_92.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_92"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0
+                float outputs:out
+            }
+
+            def Shader "_78"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = <../_98.outputs:out>
+                float inputs:in2.connect = <../_97.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_97"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_100.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_100"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_21.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_98"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_80.outputs:out>
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "_80"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_984.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_984"
+            {
+                uniform token info:id = "ND_convert_integer_float"
+                int inputs:in.connect = <../_99.outputs:vertexId>
+                float outputs:out
+            }
+
+            def Shader "_99"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_vertex_id"
+                int outputs:vertexId
+            }
+
+            def Shader "_83"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_94.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_94"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1 = 0
+                float inputs:in2.connect = <../_93.outputs:out>
+                float inputs:value1.connect = <../_95.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_95"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_96.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_96"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = <../_93.outputs:out>
+                float inputs:value2.connect = <../_97.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "_93"
+            {
+                uniform token info:id = "ND_round_float"
+                float inputs:in.connect = <../_77.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_77"
+            {
+                uniform token info:id = "ND_modulo_float"
+                float inputs:in1.connect = <../_80.outputs:out>
+                float inputs:in2.connect = <../_97.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_33"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_29.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_29"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_26.outputs:out>
+                float inputs:in2.connect = <../_30.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_30"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0
+                float outputs:out
+            }
+
+            def Shader "_26"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_25.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_50"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_957"
+            {
+                uniform token info:id = "ND_multiply_matrix44"
+                matrix4d inputs:in1.connect = <../_958.outputs:worldToModel>
+                matrix4d inputs:in2 = ((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, -1, 0), (0, 0, 0, 1))
+                matrix4d outputs:out
+            }
+
+            def Shader "_958"
+            {
+                uniform token info:id = "ND_realitykit_geometry_modifier_world_to_model"
+                matrix4d outputs:worldToModel
+            }
+
+            def Shader "_947"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_943.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_943"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:value1.connect = <../_944.outputs:out>
+                float inputs:value2 = 1E-06
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "_944"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:in1.connect = <../_942.outputs:out>
+                float inputs:in2.connect = <../_937.outputs:out>
+                float inputs:value1.connect = <../_945.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_945"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_940.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_940"
+            {
+                uniform token info:id = "ND_ifgreater_float"
+                float inputs:value1.connect = <../_937.outputs:out>
+                float inputs:value2 = 1E-06
+                float inputs:in1 = 0
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_937"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = <../_936.outputs:out>
+                float3 inputs:in2.connect = <../_936.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_942"
+            {
+                uniform token info:id = "ND_dotproduct_vector3"
+                float3 inputs:in1.connect = <../_941.outputs:out>
+                float3 inputs:in2.connect = <../_941.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_936"
+            {
+                uniform token info:id = "ND_subtract_vector3"
+                float3 inputs:in1.connect = <../_287.outputs:out>
+                float3 inputs:in2.connect = <../_523.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_523"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_524.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_524"
+            {
+                uniform token info:id = "ND_combine3_vector3"
+                float inputs:in1.connect = <../_519.outputs:out>
+                float inputs:in2.connect = <../_520.outputs:out>
+                float inputs:in3.connect = <../_521.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_521"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_612.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_612"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_613.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_613"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_603.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_603"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_604.outputs:out>
+                float2 inputs:texcoord.connect = <../_605.outputs:out>
+                float inputs:lod.connect = <../_611.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_611"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_605"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_606.outputs:out>
+                float2 inputs:in2.connect = <../_610.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_610"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_609.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_609"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_606"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_607.outputs:out>
+                float2 inputs:in2.connect = <../_608.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_608"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_609.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_607"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_620.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_620"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_583.outputs:out>
+                float2 inputs:in2.connect = <../_621.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_621"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_637.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_637"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_635.outputs:out>
+                float inputs:in2.connect = <../_636.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_636"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_634.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_634"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_632.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_632"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_527.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_527"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_635"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_633.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_633"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_632.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_583"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_600.outputs:out>
+                float2 inputs:in2.connect = <../_637.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_600"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_601.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_601"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_594.outputs:out>
+                float inputs:in2.connect = <../_595.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_595"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_588.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_588"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_586.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_586"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_584.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_584"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_694.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_694"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_594"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_590.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_590"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_587.outputs:out>
+                float inputs:in2.connect = <../_591.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_591"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_697.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_697"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_695.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "_695"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 6
+                float outputs:out
+            }
+
+            def Shader "_587"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_586.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_604"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_585.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_585"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_693.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_693"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_976.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_520"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_667.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_667"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_668.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_668"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_658.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_658"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_659.outputs:out>
+                float2 inputs:texcoord.connect = <../_660.outputs:out>
+                float inputs:lod.connect = <../_666.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_666"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_660"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_661.outputs:out>
+                float2 inputs:in2.connect = <../_665.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_665"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_664.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_664"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_661"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_662.outputs:out>
+                float2 inputs:in2.connect = <../_663.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_663"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_664.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_662"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_675.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_675"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_638.outputs:out>
+                float2 inputs:in2.connect = <../_676.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_676"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_692.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_692"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_690.outputs:out>
+                float inputs:in2.connect = <../_691.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_691"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_689.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_689"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_687.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_687"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_527.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_690"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_688.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_688"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_687.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_638"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_655.outputs:out>
+                float2 inputs:in2.connect = <../_692.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_655"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_656.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_656"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_649.outputs:out>
+                float inputs:in2.connect = <../_650.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_650"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_643.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_643"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_641.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_641"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_639.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_639"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_694.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_649"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_645.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_645"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_642.outputs:out>
+                float inputs:in2.connect = <../_646.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_646"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_696.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_696"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_695.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_642"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_641.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_659"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_640.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_640"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_693.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_519"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_557.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_557"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_558.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_558"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_548.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_548"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_549.outputs:out>
+                float2 inputs:texcoord.connect = <../_550.outputs:out>
+                float inputs:lod.connect = <../_556.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_556"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_550"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_551.outputs:out>
+                float2 inputs:in2.connect = <../_555.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_555"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_554.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_554"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_551"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_552.outputs:out>
+                float2 inputs:in2.connect = <../_553.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_553"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_554.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_552"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_565.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_565"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_528.outputs:out>
+                float2 inputs:in2.connect = <../_566.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_566"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_582.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_582"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_580.outputs:out>
+                float inputs:in2.connect = <../_581.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_581"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_579.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_579"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_577.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_577"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_527.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_580"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_578.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_578"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_577.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_528"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_545.outputs:out>
+                float2 inputs:in2.connect = <../_582.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_545"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_546.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_546"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_539.outputs:out>
+                float inputs:in2.connect = <../_540.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_540"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_533.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_533"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_531.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_531"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_529.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_529"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_694.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_539"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_535.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_535"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_532.outputs:out>
+                float inputs:in2.connect = <../_536.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_536"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_695.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_532"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_531.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_549"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_530.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_530"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_693.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_939"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_940.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_701"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_848.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_848"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_849.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_849"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_839.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_839"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_840.outputs:out>
+                float2 inputs:texcoord.connect = <../_841.outputs:out>
+                float inputs:lod.connect = <../_847.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_847"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_841"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_842.outputs:out>
+                float2 inputs:in2.connect = <../_846.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_846"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_845.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_845"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_842"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_843.outputs:out>
+                float2 inputs:in2.connect = <../_844.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_844"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_845.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_843"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_856.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_856"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_819.outputs:out>
+                float2 inputs:in2.connect = <../_857.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_857"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_873.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_873"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_871.outputs:out>
+                float inputs:in2.connect = <../_872.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_872"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_870.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_870"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_868.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_868"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_708.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_708"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_871"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_869.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_869"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_868.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_819"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_836.outputs:out>
+                float2 inputs:in2.connect = <../_873.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_836"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_837.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_837"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_830.outputs:out>
+                float inputs:in2.connect = <../_831.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_831"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_824.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_824"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_822.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_822"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_820.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_820"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_875.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_875"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_830"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_826.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_826"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_823.outputs:out>
+                float inputs:in2.connect = <../_827.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_827"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_877.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_877"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_876.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_876"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 9
+                float outputs:out
+            }
+
+            def Shader "_823"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_822.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_840"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_821.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_821"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_874.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_702"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_793.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_793"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_794.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_794"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_784.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_784"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_785.outputs:out>
+                float2 inputs:texcoord.connect = <../_786.outputs:out>
+                float inputs:lod.connect = <../_792.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_792"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_786"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_787.outputs:out>
+                float2 inputs:in2.connect = <../_791.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_791"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_790.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_790"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_787"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_788.outputs:out>
+                float2 inputs:in2.connect = <../_789.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_789"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_790.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_788"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_801.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_801"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_764.outputs:out>
+                float2 inputs:in2.connect = <../_802.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_802"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_818.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_818"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_816.outputs:out>
+                float inputs:in2.connect = <../_817.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_817"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_815.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_815"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_813.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_813"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_708.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_816"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_814.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_814"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_813.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_764"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_781.outputs:out>
+                float2 inputs:in2.connect = <../_818.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_781"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_782.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_782"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_775.outputs:out>
+                float inputs:in2.connect = <../_776.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_776"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_769.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_769"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_767.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_767"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_765.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_765"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_875.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_775"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_771.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_771"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_768.outputs:out>
+                float inputs:in2.connect = <../_772.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_772"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_878.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_878"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_876.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "_768"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_767.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_785"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_766.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_766"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_874.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_731"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_732.outputs:out>
+                float2 inputs:in2.connect = <../_736.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_736"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_735.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_735"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_732"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_733.outputs:out>
+                float2 inputs:in2.connect = <../_734.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_734"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_735.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_733"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_746.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_746"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_709.outputs:out>
+                float2 inputs:in2.connect = <../_747.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_747"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_763.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_763"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_761.outputs:out>
+                float inputs:in2.connect = <../_762.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_762"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_760.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_760"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_758.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_758"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_708.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_761"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_759.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_759"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_758.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_709"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_726.outputs:out>
+                float2 inputs:in2.connect = <../_763.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_726"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_727.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_727"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_720.outputs:out>
+                float inputs:in2.connect = <../_721.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_721"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_714.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_714"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_712.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_712"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_710.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_710"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_875.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_720"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_716.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_716"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_713.outputs:out>
+                float inputs:in2.connect = <../_717.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_717"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_876.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_713"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_712.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_737"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_369"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_370.outputs:out>
+                float2 inputs:in2.connect = <../_374.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_374"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_373.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_373"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_370"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_371.outputs:out>
+                float2 inputs:in2.connect = <../_372.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_372"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_373.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_371"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_384.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_384"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_347.outputs:out>
+                float2 inputs:in2.connect = <../_385.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_385"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_401.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_401"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_399.outputs:out>
+                float inputs:in2.connect = <../_400.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_400"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_398.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_398"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_396.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_396"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_291.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_399"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_397.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_397"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_396.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_347"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_364.outputs:out>
+                float2 inputs:in2.connect = <../_401.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_364"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_365.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_365"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_358.outputs:out>
+                float inputs:in2.connect = <../_359.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_359"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_352.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_352"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_350.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_350"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_348.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_348"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_458.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_358"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_354.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_354"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_351.outputs:out>
+                float inputs:in2.connect = <../_355.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_355"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_461.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_461"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_459.outputs:out>
+                float inputs:in2 = 2
+                float outputs:out
+            }
+
+            def Shader "_351"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_350.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_375"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_430"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_429"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_428.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_428"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_427"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_428.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_440"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_456.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_456"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_454.outputs:out>
+                float inputs:in2.connect = <../_455.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_455"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_453.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_453"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_451.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_451"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_291.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_454"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_452.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_452"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_451.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_414"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_407.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_407"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_405.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_410"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_460.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_460"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_459.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_113"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_108.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_108"
+            {
+                uniform token info:id = "ND_floor_float"
+                float inputs:in.connect = <../_120.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_120"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_107.outputs:out>
+                float inputs:in2.connect = <../_121.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_121"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0
+                float outputs:out
+            }
+
+            def Shader "_107"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1.connect = <../_127.outputs:out>
+                float inputs:in2.connect = <../_126.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_127"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_109.outputs:out>
+                float inputs:in2 = 0.5
+                float outputs:out
+            }
+
+            def Shader "_114"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_124"
+            {
+                uniform token info:id = "ND_absval_float"
+                float inputs:in.connect = <../_125.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_125"
+            {
+                uniform token info:id = "ND_ifgreatereq_float"
+                float inputs:value1.connect = <../_122.outputs:out>
+                float inputs:value2.connect = <../_126.outputs:out>
+                float inputs:in1 = 1
+                float inputs:in2 = 0
+                float outputs:out
+            }
+
+            def Shader "_126"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_129.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_129"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_128.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_345"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_343.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_343"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_341.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_259"
+            {
+                uniform token info:id = "ND_floor_vector2"
+                float2 inputs:in.connect = <../_258.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_136"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_228.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_228"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_229.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_229"
+            {
+                uniform token info:id = "ND_swizzle_vector4_float"
+                float4 inputs:in.connect = <../_219.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_219"
+            {
+                uniform token info:id = "ND_RealityKitTexture2DLOD_vector4"
+                asset inputs:file.connect = <../_220.outputs:out>
+                float2 inputs:texcoord.connect = <../_221.outputs:out>
+                float inputs:lod.connect = <../_227.outputs:out>
+                string inputs:min_filter = "nearest"
+                string inputs:mag_filter = "nearest"
+                string inputs:mip_filter = "nearest"
+                string inputs:u_wrap_mode = "clamp_to_edge"
+                string inputs:v_wrap_mode = "clamp_to_edge"
+                int inputs:max_anisotropy = 1
+                float4 outputs:out
+            }
+
+            def Shader "_227"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+
+            def Shader "_221"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_222.outputs:out>
+                float2 inputs:in2.connect = <../_226.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_226"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_225.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_225"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_222"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_223.outputs:out>
+                float2 inputs:in2.connect = <../_224.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_224"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_225.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_223"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_236.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_236"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_199.outputs:out>
+                float2 inputs:in2.connect = <../_237.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_237"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_253.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_253"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_251.outputs:out>
+                float inputs:in2.connect = <../_252.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_252"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_250.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_250"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_248.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_248"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_143.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_143"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_128.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_251"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_249.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_249"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_248.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_199"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_216.outputs:out>
+                float2 inputs:in2.connect = <../_253.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_216"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_217.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_217"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_210.outputs:out>
+                float inputs:in2.connect = <../_211.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_211"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_204.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_204"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_202.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_202"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_200.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_200"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_255.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_255"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_116.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_210"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_206.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_206"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_203.outputs:out>
+                float inputs:in2.connect = <../_207.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_207"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_257.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_257"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_256.outputs:out>
+                float inputs:in2 = 1
+                float outputs:out
+            }
+
+            def Shader "_256"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value = 0
+                float outputs:out
+            }
+
+            def Shader "_203"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_202.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_220"
+            {
+                uniform token info:id = "ND_dot_filename"
+                asset inputs:in.connect = <../_201.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_201"
+            {
+                uniform token info:id = "ND_constant_filename"
+                asset inputs:value.connect = <../_254.outputs:out>
+                asset outputs:out
+            }
+
+            def Shader "_166"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_167.outputs:out>
+                float2 inputs:in2.connect = <../_171.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_171"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_170.outputs:out>
+                string inputs:channels = "zw"
+                float2 outputs:out
+            }
+
+            def Shader "_170"
+            {
+                uniform token info:id = "ND_constant_vector4"
+                float4 inputs:value = (1, 1, 0, 0)
+                float4 outputs:out
+            }
+
+            def Shader "_167"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_168.outputs:out>
+                float2 inputs:in2.connect = <../_169.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_169"
+            {
+                uniform token info:id = "ND_swizzle_vector4_vector2"
+                float4 inputs:in.connect = <../_170.outputs:out>
+                string inputs:channels = "xy"
+                float2 outputs:out
+            }
+
+            def Shader "_168"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_181.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_181"
+            {
+                uniform token info:id = "ND_add_vector2"
+                float2 inputs:in1.connect = <../_144.outputs:out>
+                float2 inputs:in2.connect = <../_182.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_182"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_198.outputs:out>
+                float2 inputs:in2 = (0.5, 0.5)
+                float2 outputs:out
+            }
+
+            def Shader "_198"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_196.outputs:out>
+                float inputs:in2.connect = <../_197.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_197"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_195.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_195"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_193.outputs:out>
+                string inputs:channels = "y"
+                float outputs:out
+            }
+
+            def Shader "_193"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_143.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_196"
+            {
+                uniform token info:id = "ND_divide_float"
+                float inputs:in1 = 1
+                float inputs:in2.connect = <../_194.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_194"
+            {
+                uniform token info:id = "ND_swizzle_vector3_float"
+                float3 inputs:in.connect = <../_193.outputs:out>
+                string inputs:channels = "x"
+                float outputs:out
+            }
+
+            def Shader "_144"
+            {
+                uniform token info:id = "ND_multiply_vector2"
+                float2 inputs:in1.connect = <../_161.outputs:out>
+                float2 inputs:in2.connect = <../_198.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_161"
+            {
+                uniform token info:id = "ND_dot_vector2"
+                float2 inputs:in.connect = <../_162.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_162"
+            {
+                uniform token info:id = "ND_combine2_vector2"
+                float inputs:in1.connect = <../_155.outputs:out>
+                float inputs:in2.connect = <../_156.outputs:out>
+                float2 outputs:out
+            }
+
+            def Shader "_156"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_149.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_149"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_147.outputs:out>
+                int inputs:index = 1
+                float outputs:out
+            }
+
+            def Shader "_147"
+            {
+                uniform token info:id = "ND_dot_vector3"
+                float3 inputs:in.connect = <../_145.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_145"
+            {
+                uniform token info:id = "ND_constant_vector3"
+                float3 inputs:value.connect = <../_255.outputs:out>
+                float3 outputs:out
+            }
+
+            def Shader "_155"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in.connect = <../_151.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_151"
+            {
+                uniform token info:id = "ND_add_float"
+                float inputs:in1.connect = <../_148.outputs:out>
+                float inputs:in2.connect = <../_152.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_152"
+            {
+                uniform token info:id = "ND_constant_float"
+                float inputs:value.connect = <../_256.outputs:out>
+                float outputs:out
+            }
+
+            def Shader "_148"
+            {
+                uniform token info:id = "ND_extract_vector3"
+                float3 inputs:in.connect = <../_147.outputs:out>
+                int inputs:index = 0
+                float outputs:out
+            }
+
+            def Shader "_172"
+            {
+                uniform token info:id = "ND_dot_float"
+                float inputs:in = 0
+                float outputs:out
+            }
+        }
+    }
+}

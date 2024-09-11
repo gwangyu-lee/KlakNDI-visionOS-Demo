@@ -1,0 +1,13 @@
+{
+  "images" : [
+    {
+      "filename" : "Icon-VISIONOS-1024x1024-Layer-2.png",
+      "idiom" : "vision",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "author" : "DefaultCompany",
+    "version" : 1
+  }
+}
