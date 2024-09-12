@@ -1,8 +1,15 @@
 # KlakNDI visionOS Demo
 
-Demo project of using KlakNDI with Apple Vision Pro
+Demo project using KlakNDI with Apple Vision Pro
 
 ![Untitled](https://github.com/user-attachments/assets/85bbeef8-e340-49ca-922a-e29e3f39d708)
+
+### KlakNDI
+Repository: https://github.com/keijiro/KlakNDI    
+Issue: https://github.com/keijiro/KlakNDI/issues/203
+
+### Unity version
+2022.3.32f1    
 
 ### Build settings
 Switch to the visionOS platform    
@@ -60,10 +67,12 @@ Klak.Ndi.Runtime.asmdef
 ```
 
 ### Copy iOS NDI SDK
-1. Make a `visionOS` folder in `/Library/NDI SDK for Apple/lib/`. Copy and paste `libndi_ios.a` into the folder. And change the name to `libndi_visionos.a`
+Make a `visionOS` folder in `/Library/NDI SDK for Apple/lib/`. Copy and paste `libndi_ios.a` into the folder. And change the name to `libndi_visionos.a`
 <img width="976" alt="Screenshot 2024-08-24 at 2 16 27 AM" src="https://github.com/user-attachments/assets/002f17d4-c29e-413a-b99e-d8836f4920eb">
 
-2. Use the UnityEditor.iOS.Xcode but edit the path manually.
+
+### Edit path and name of Xcode project
+There is no `UnityEditor.visionOS.Xcode`, so use it but manually edit the path and Xcode project name.
 
 PbxModifier.cs
 ```cs
