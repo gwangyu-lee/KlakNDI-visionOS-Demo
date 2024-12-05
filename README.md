@@ -16,10 +16,10 @@ Switch to the visionOS platform
 Target SDK - Device SDK    
 
 ### Packages
-com.unity.xr.visionos    
-com.unity.polyspatial    
-com.unity.polyspatial.visionos    
-com.unity.polyspatial.xr    
+```com.unity.xr.visionos```    
+```com.unity.polyspatial```    
+```com.unity.polyspatial.visionos```    
+```com.unity.polyspatial.xr```    
 
 ### Project Settings
 XR Plug-in manager - Plug-in Providers - Check Apple visionOS    
